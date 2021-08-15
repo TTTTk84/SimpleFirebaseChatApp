@@ -108,7 +108,15 @@ class LoginViewController: UIViewController {
     }
     
     @objc func moveToChatList() {
-        print("move")
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        
+        let chatListViewController = ChatListViewController()
+        chatListViewController.modalPresentationStyle = .fullScreen
+        present(chatListViewController, animated: true, completion: nil)
     }
     
     @objc func moveToSignUp() {

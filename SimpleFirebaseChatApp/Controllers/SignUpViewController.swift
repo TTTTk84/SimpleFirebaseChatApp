@@ -11,13 +11,16 @@ class SignUpViewController: UIViewController {
     let widthValue = UIScreen.main.bounds.width
     let heightValue = UIScreen.main.bounds.height
     
-    lazy var loginLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Register"
-        label.textColor = .black
-        label.font = UIFont(name: "HiraKakuProN-W6", size: widthValue * 0.2)
-        return label
+    lazy var profileImageButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("プロフィール画像", for: .normal)
+        button.backgroundColor = .green
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = widthValue * 0.5 / 2
+        button.addTarget(self, action: #selector(moveToChatList), for: .touchUpInside)
+        return button
     }()
     
     lazy var stackViews: UIStackView = {
@@ -32,10 +35,10 @@ class SignUpViewController: UIViewController {
     
     lazy var formStackViews: [UIStackView] = {
         var stackViews: [UIStackView] = []
-        let labelNames: [String] = ["email", "password"]
-        let placeholderNames: [String] = ["メールアドレス","パスワード"]
+        let labelNames: [String] = ["email", "password", "user name"]
+        let placeholderNames: [String] = ["メールアドレス","パスワード","ユーザの名前"]
         
-        for i in 0 ..< 2 {
+        for i in 0 ..< 3 {
             var stackView: UIStackView = UIStackView()
             let label = UILabel()
             let form = UITextField()
@@ -52,10 +55,10 @@ class SignUpViewController: UIViewController {
         return stackViews
     }()
     
-    lazy var loginButton: UIButton = {
+    lazy var registerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Register", for: .normal)
         button.backgroundColor = .green
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
         button.setTitleColor(.white, for: .normal)
@@ -64,13 +67,13 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
-    lazy var registerButton: UIButton = {
+    lazy var newloginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("新規登録の方はこちらから", for: .normal)
+        button.setTitle("既にアカウントを持っている方はこちら", for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.addTarget(self, action: #selector(moveToSignUp), for: .touchUpInside)
+        button.addTarget(self, action: #selector(moveToLogin), for: .touchUpInside)
         return button
     }()
     
@@ -78,28 +81,29 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        view.addSubview(loginLabel)
+        view.addSubview(profileImageButton)
         view.addSubview(stackViews)
-        view.addSubview(loginButton)
         view.addSubview(registerButton)
+        view.addSubview(newloginButton)
         for stack in formStackViews {
             stackViews.addArrangedSubview(stack)
         }
         
         
         NSLayoutConstraint.activate([
-            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: widthValue * 0.3),
-            loginLabel.heightAnchor.constraint(equalToConstant: widthValue * 0.25),
+            profileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            profileImageButton.topAnchor.constraint(equalTo: view.topAnchor, constant: widthValue * 0.3),
+            profileImageButton.heightAnchor.constraint(equalToConstant: widthValue * 0.5),
+            profileImageButton.widthAnchor.constraint(equalToConstant: widthValue * 0.5),
             stackViews.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            stackViews.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: widthValue * 0.2),
+            stackViews.topAnchor.constraint(equalTo: profileImageButton.bottomAnchor, constant: widthValue * 0.1),
             stackViews.widthAnchor.constraint(equalToConstant: widthValue * 0.7),
             stackViews.heightAnchor.constraint(equalToConstant: widthValue * 0.5),
-            loginButton.topAnchor.constraint(equalTo: stackViews.bottomAnchor, constant: widthValue * 0.2),
-            loginButton.widthAnchor.constraint(equalToConstant: widthValue * 0.7),
-            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            registerButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: widthValue * 0.1),
+            registerButton.topAnchor.constraint(equalTo: stackViews.bottomAnchor, constant: widthValue * 0.2),
+            registerButton.widthAnchor.constraint(equalToConstant: widthValue * 0.7),
             registerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            newloginButton.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: widthValue * 0.1),
+            newloginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
         ])
         
         
@@ -107,12 +111,26 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func moveToChatList() {
-        print("move")
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        
+        let chatListViewController = ChatListViewController()
+        chatListViewController.modalPresentationStyle = .fullScreen
+        present(chatListViewController, animated: true, completion: nil)
     }
     
-    @objc func moveToSignUp() {
-//        let modalViewController = ModalViewController.init()
-//        modalViewController.modalPresentationStyle = .fullScreen
-//        present(modalViewController, animated: true, completion: nil)
+    @objc func moveToLogin() {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        
+        let loginViewController = LoginViewController()
+        loginViewController.modalPresentationStyle = .fullScreen
+        present(loginViewController, animated: true, completion: nil)
     }
 }

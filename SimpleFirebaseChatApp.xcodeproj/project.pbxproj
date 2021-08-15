@@ -10,11 +10,15 @@
 		54EBB9E526C7781E00A8861A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB9E426C7781E00A8861A /* AppDelegate.swift */; };
 		54EBB9E726C7781E00A8861A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB9E626C7781E00A8861A /* SceneDelegate.swift */; };
 		54EBB9E926C7781E00A8861A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB9E826C7781E00A8861A /* ViewController.swift */; };
-		54EBB9EC26C7781E00A8861A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54EBB9EA26C7781E00A8861A /* Main.storyboard */; };
 		54EBB9EE26C7781F00A8861A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54EBB9ED26C7781F00A8861A /* Assets.xcassets */; };
 		54EBB9F126C7781F00A8861A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54EBB9EF26C7781F00A8861A /* LaunchScreen.storyboard */; };
 		54EBB9FC26C7781F00A8861A /* SimpleFirebaseChatAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB9FB26C7781F00A8861A /* SimpleFirebaseChatAppTests.swift */; };
 		54EBBA0726C7781F00A8861A /* SimpleFirebaseChatAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBBA0626C7781F00A8861A /* SimpleFirebaseChatAppUITests.swift */; };
+		54EBBA1926C78ED400A8861A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBBA1826C78ED400A8861A /* SignUpViewController.swift */; };
+		54EBBA1B26C78EE400A8861A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBBA1A26C78EE400A8861A /* LoginViewController.swift */; };
+		54EBBA1D26C78F0D00A8861A /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBBA1C26C78F0D00A8861A /* UserListViewController.swift */; };
+		54EBBA1F26C78F2A00A8861A /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBBA1E26C78F2A00A8861A /* ChatListViewController.swift */; };
+		54EBBA2126C78F4600A8861A /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBBA2026C78F4600A8861A /* ChatRoomViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +43,6 @@
 		54EBB9E426C7781E00A8861A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54EBB9E626C7781E00A8861A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		54EBB9E826C7781E00A8861A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		54EBB9EB26C7781E00A8861A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54EBB9ED26C7781F00A8861A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54EBB9F026C7781F00A8861A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54EBB9F226C7781F00A8861A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +52,11 @@
 		54EBBA0226C7781F00A8861A /* SimpleFirebaseChatAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleFirebaseChatAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54EBBA0626C7781F00A8861A /* SimpleFirebaseChatAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFirebaseChatAppUITests.swift; sourceTree = "<group>"; };
 		54EBBA0826C7781F00A8861A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54EBBA1826C78ED400A8861A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		54EBBA1A26C78EE400A8861A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		54EBBA1C26C78F0D00A8861A /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		54EBBA1E26C78F2A00A8861A /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		54EBBA2026C78F4600A8861A /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +107,13 @@
 		54EBB9E326C7781E00A8861A /* SimpleFirebaseChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				54EBBA1726C787D700A8861A /* Controllers */,
+				54EBBA1626C787CC00A8861A /* Extensions */,
+				54EBBA1526C787C600A8861A /* Models */,
+				54EBBA1426C787BE00A8861A /* Views */,
 				54EBB9E426C7781E00A8861A /* AppDelegate.swift */,
 				54EBB9E626C7781E00A8861A /* SceneDelegate.swift */,
 				54EBB9E826C7781E00A8861A /* ViewController.swift */,
-				54EBB9EA26C7781E00A8861A /* Main.storyboard */,
 				54EBB9ED26C7781F00A8861A /* Assets.xcassets */,
 				54EBB9EF26C7781F00A8861A /* LaunchScreen.storyboard */,
 				54EBB9F226C7781F00A8861A /* Info.plist */,
@@ -126,6 +137,39 @@
 				54EBBA0826C7781F00A8861A /* Info.plist */,
 			);
 			path = SimpleFirebaseChatAppUITests;
+			sourceTree = "<group>";
+		};
+		54EBBA1426C787BE00A8861A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		54EBBA1526C787C600A8861A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		54EBBA1626C787CC00A8861A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		54EBBA1726C787D700A8861A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				54EBBA1826C78ED400A8861A /* SignUpViewController.swift */,
+				54EBBA1A26C78EE400A8861A /* LoginViewController.swift */,
+				54EBBA1E26C78F2A00A8861A /* ChatListViewController.swift */,
+				54EBBA1C26C78F0D00A8861A /* UserListViewController.swift */,
+				54EBBA2026C78F4600A8861A /* ChatRoomViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +277,6 @@
 			files = (
 				54EBB9F126C7781F00A8861A /* LaunchScreen.storyboard in Resources */,
 				54EBB9EE26C7781F00A8861A /* Assets.xcassets in Resources */,
-				54EBB9EC26C7781E00A8861A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +303,12 @@
 			files = (
 				54EBB9E926C7781E00A8861A /* ViewController.swift in Sources */,
 				54EBB9E526C7781E00A8861A /* AppDelegate.swift in Sources */,
+				54EBBA1926C78ED400A8861A /* SignUpViewController.swift in Sources */,
+				54EBBA2126C78F4600A8861A /* ChatRoomViewController.swift in Sources */,
+				54EBBA1B26C78EE400A8861A /* LoginViewController.swift in Sources */,
+				54EBBA1F26C78F2A00A8861A /* ChatListViewController.swift in Sources */,
 				54EBB9E726C7781E00A8861A /* SceneDelegate.swift in Sources */,
+				54EBBA1D26C78F0D00A8861A /* UserListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +344,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		54EBB9EA26C7781E00A8861A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				54EBB9EB26C7781E00A8861A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		54EBB9EF26C7781F00A8861A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

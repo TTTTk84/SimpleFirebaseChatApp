@@ -7,19 +7,21 @@
 
 import UIKit
 
+let widthValue = UIScreen.main.bounds.width
+let heightValue = UIScreen.main.bounds.height
+
 // iOS13以降
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = LoginViewController()
             self.window = window
-            window.makeKeyAndVisible()
+            Application.shared.configure(with: self.window!)
+            self.window?.makeKeyAndVisible()
         }
     }
     

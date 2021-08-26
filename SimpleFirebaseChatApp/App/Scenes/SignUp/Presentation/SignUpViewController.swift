@@ -111,26 +111,27 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func moveToChatList() {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
+        setAnimation()
         
         let chatListViewController = ChatListViewController()
-        chatListViewController.modalPresentationStyle = .fullScreen
-        present(chatListViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: chatListViewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true, completion: nil)
     }
     
     @objc func moveToLogin() {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
+        setAnimation()
         
         let loginViewController = LoginViewController()
         loginViewController.modalPresentationStyle = .fullScreen
         present(loginViewController, animated: true, completion: nil)
+    }
+    
+    func setAnimation() {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
     }
 }

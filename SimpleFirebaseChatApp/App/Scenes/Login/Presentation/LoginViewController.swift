@@ -9,9 +9,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    let widthValue = UIScreen.main.bounds.width
-    let heightValue = UIScreen.main.bounds.height
-    
     lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -108,26 +105,27 @@ class LoginViewController: UIViewController {
     }
     
     @objc func moveToChatList() {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
-        
+        setAnimation()
+
         let chatListViewController = ChatListViewController()
-        chatListViewController.modalPresentationStyle = .fullScreen
-        present(chatListViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: chatListViewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true, completion: nil)
     }
     
     @objc func moveToSignUp() {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
+        setAnimation()
         
         let signUpViewController = SignUpViewController()
         signUpViewController.modalPresentationStyle = .fullScreen
         present(signUpViewController, animated: true, completion: nil)
+    }
+    
+    func setAnimation() {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
     }
 }

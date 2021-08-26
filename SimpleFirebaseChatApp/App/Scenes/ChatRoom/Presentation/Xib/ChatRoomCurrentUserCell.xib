@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatRoomCurrentUserCell" rowHeight="63" id="bOF-Jc-WLI" customClass="ChatRoomCurrentUserCell" customModule="SimpleFirebaseChatApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="63"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bOF-Jc-WLI" id="nzc-ed-tB7">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="63"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="hogehoge" translatesAutoresizingMaskIntoConstraints="NO" id="wxE-k3-hDr">
+                        <rect key="frame" x="154" y="10" width="250" height="43"/>
+                        <color key="backgroundColor" red="0.60392156862745094" green="0.8784313725490196" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="250" id="X3h-aW-UeL"/>
+                        </constraints>
+                        <color key="textColor" systemColor="labelColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7an-cZ-Az8">
+                        <rect key="frame" x="101.5" y="32" width="42.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wxE-k3-hDr" firstAttribute="leading" secondItem="7an-cZ-Az8" secondAttribute="trailing" constant="10" id="ILU-ea-M8b"/>
+                    <constraint firstItem="wxE-k3-hDr" firstAttribute="top" secondItem="nzc-ed-tB7" secondAttribute="top" constant="10" id="ldL-9c-9xD"/>
+                    <constraint firstAttribute="bottom" secondItem="wxE-k3-hDr" secondAttribute="bottom" constant="10" id="mgz-sh-Xo8"/>
+                    <constraint firstAttribute="bottom" secondItem="7an-cZ-Az8" secondAttribute="bottom" constant="10" id="mvY-pi-eBC"/>
+                    <constraint firstAttribute="trailing" secondItem="wxE-k3-hDr" secondAttribute="trailing" constant="10" id="whX-mx-F6k"/>
+                    <constraint firstItem="wxE-k3-hDr" firstAttribute="centerY" secondItem="nzc-ed-tB7" secondAttribute="centerY" id="xaJ-yz-uY7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="messageTextView" destination="wxE-k3-hDr" id="Wcx-Yo-51X"/>
+                <outlet property="myDateLabel" destination="7an-cZ-Az8" id="0OW-oW-GZ5"/>
+            </connections>
+            <point key="canvasLocation" x="15.942028985507248" y="9.7098214285714288"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

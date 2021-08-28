@@ -71,6 +71,12 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(moveToSignUp), for: .touchUpInside)
         return button
     }()
+
+    private var presenter: LoginPresenterProtocol!
+
+    func inject(presenter: LoginPresenterProtocol) {
+        self.presenter = presenter
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +90,11 @@ class LoginViewController: UIViewController {
             stackViews.addArrangedSubview(stack)
         }
         
-        
+        self.setupConstraint()
+
+    }
+
+    private func setupConstraint() {
         NSLayoutConstraint.activate([
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: widthValue * 0.3),
@@ -99,33 +109,40 @@ class LoginViewController: UIViewController {
             newRegisterButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: widthValue * 0.1),
             newRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
         ])
-        
-        
-        
+
     }
     
     @objc func moveToChatList() {
-        setAnimation()
-
-        let chatListViewController = ChatListViewController()
-        let navigationController = UINavigationController(rootViewController: chatListViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true, completion: nil)
+//        setAnimation()
+//
+//        let chatListViewController = ChatListViewController()
+//        let navigationController = UINavigationController(rootViewController: chatListViewController)
+//        navigationController.modalPresentationStyle = .fullScreen
+//        present(navigationController, animated: true, completion: nil)
+        self.presenter.tappedLoginButton()
     }
     
     @objc func moveToSignUp() {
-        setAnimation()
-        
-        let signUpViewController = SignUpViewController()
-        signUpViewController.modalPresentationStyle = .fullScreen
-        present(signUpViewController, animated: true, completion: nil)
+//        setAnimation()
+//
+//        let signUpViewController = SignUpViewController()
+//        signUpViewController.modalPresentationStyle = .fullScreen
+//        present(signUpViewController, animated: true, completion: nil)
+        self.presenter.tappedSignUpButton()
     }
     
-    func setAnimation() {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
+//    func setAnimation() {
+//        let transition = CATransition()
+//        transition.duration = 0.5
+//        transition.type = CATransitionType.push
+//        transition.subtype = CATransitionSubtype.fromRight
+//        view.window!.layer.add(transition, forKey: kCATransition)
+//    }
+}
+
+
+extension LoginViewController: ChatViewProtocol {
+    func reloadTableView() {
     }
+    
 }

@@ -14,40 +14,42 @@ class Application {
     static let shared = Application()
     private init() {}
 
-    //private(set) var useCase: !
+    private(set) var useCase: ChatUseCaseProtocol!
 
     func configure(with window: UIWindow) {
         buildLayer()
 
-//        let todoIndexViewController = TodoIndexViewController()
-//        let todoRouter = TodoIndexRouter(view: todoIndexViewController)
-//        let todoIndexPresenter = TodoIndexPresenter(view: todoIndexViewController,
-//                                                    useCase: self.useCase,
-//                                                    router: todoRouter)
-//        todoIndexViewController.inject(presenter: todoIndexPresenter)
-//        let navigatonController = UINavigationController(rootViewController: todoIndexViewController)
-
-        //let loginViewController = LoginViewController()
-        let loginViewController = UserDetailViewController()
+        let loginViewController = LoginViewController()
         let navigationController = UINavigationController(rootViewController: loginViewController)
 
-        let tempVC = ViewController()
+        let loginRouter = LoginRouter(view: loginViewController)
+        let loginPresenter = LoginPresenter(router: loginRouter,
+                                            useCase: self.useCase)
+        loginViewController.inject(presenter: loginPresenter)
 
-        window.rootViewController = tempVC
+
+        window.rootViewController = navigationController
     }
 
 
     // MARK: Private Methods
 
     private func buildLayer() {
-//        self.useCase = TodoUseCase()
-//
+
+        self.useCase = ChatUseCase()
+
 //        let todoGateway = TodoGateway(useCase: self.useCase)
 //
 //        useCase.todoGateway = todoGateway
 //
 //        let todoDataStore = TodoDataStore()
 //        todoGateway.dataStore = todoDataStore
+
+        let userGateway = UserGateway(useCase: self.useCase)
+
+        self.useCase.userGateway = userGateway
+        
+
     }
 
 }

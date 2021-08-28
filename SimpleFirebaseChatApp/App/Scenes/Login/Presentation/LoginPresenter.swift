@@ -6,3 +6,31 @@
 //
 
 import Foundation
+
+protocol LoginPresenterProtocol {
+    func tappedLoginButton()
+    func tappedSignUpButton()
+}
+
+
+class LoginPresenter {
+
+    private let router: LoginRouter!
+    private let useCase: ChatUseCaseProtocol!
+
+    init(router: LoginRouter, useCase: ChatUseCaseProtocol) {
+        self.router = router
+        self.useCase = useCase
+    }
+
+}
+
+extension LoginPresenter: LoginPresenterProtocol {
+    func tappedSignUpButton() {
+    }
+
+    func tappedLoginButton() {
+    }
+
+
+}

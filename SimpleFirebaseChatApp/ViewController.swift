@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }
 
     private func createUserImage() {
-        let image = UIImage(named: "boy")
+        let image = UIImage(named: "sori")
         guard let uploadImage = image?.jpegData(compressionQuality: 0.3) else { return }
 
         let fileName = NSUUID().uuidString
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     }
 
     private func createUserToFirestore(profileImageUrl: String) {
-        let email = "user1@a.com"
+        let email = "user3@a.com"
         let pass = "aaaaaa"
 
         Auth.auth().createUser(withEmail: email, password: pass) {(res, err) in
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
             }
 
             guard let uid = res?.user.uid else { return }
-            let username = "user1"
+            let username = "user3"
             let docData = [
                 "email": email,
                 "username": username,

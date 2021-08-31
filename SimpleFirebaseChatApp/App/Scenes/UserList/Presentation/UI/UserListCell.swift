@@ -12,5 +12,8 @@ class UserListCell: UITableViewCell {
     
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var partnerLabel: UILabel!
-    
+
+    func setupValue(partnerLabel: String) {
+        self.partnerLabel.text = partnerLabel
+    }
 }

@@ -27,9 +27,11 @@ class LoginPresenter {
 
 extension LoginPresenter: LoginPresenterProtocol {
     func tappedSignUpButton() {
+        self.router.transitionToSignUp()
     }
 
     func tappedLoginButton() {
+        self.router.transitionToLoginSuccess()
     }
 
 

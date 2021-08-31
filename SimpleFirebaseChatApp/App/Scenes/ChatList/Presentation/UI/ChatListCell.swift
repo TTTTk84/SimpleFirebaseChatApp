@@ -16,4 +16,9 @@ class ChatListCell: UITableViewCell {
     @IBOutlet weak var latestMessageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
 
+    func setupValue(partnerLabel: String, latestMessageLabel: String) {
+        self.partnerLabel.text = partnerLabel
+        self.latestMessageLabel.text = latestMessageLabel
+    }
+
 }

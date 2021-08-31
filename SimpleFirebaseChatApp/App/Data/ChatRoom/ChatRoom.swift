@@ -10,8 +10,9 @@ import Firebase
 
 class ChatRoom {
 
-    let latestMessageId: String
+    var latestMessageId: String
     let memebers: [String]
+    var chatRoomName: String
     let createdAt: Timestamp
 
     var documentId: String?
@@ -20,6 +21,7 @@ class ChatRoom {
         self.latestMessageId = dic["latestMessageId"] as? String ?? ""
         self.memebers = dic["memebers"] as? [String] ?? [String]()
         self.createdAt = dic["createdAt"] as? Timestamp ?? Timestamp()
+        self.chatRoomName = dic["chatRoomName"] as? String ?? ""
     }
 
 }

@@ -26,7 +26,6 @@ class ChatUseCase {
 
 extension ChatUseCase: ChatUseCaseProtocol {
 
-
     func createUser() {
     }
 

@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+
         view.addSubview(loginLabel)
         view.addSubview(stackViews)
         view.addSubview(loginButton)
@@ -92,6 +92,10 @@ class LoginViewController: UIViewController {
         
         self.setupConstraint()
 
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = .white 
     }
 
     private func setupConstraint() {
@@ -113,31 +117,13 @@ class LoginViewController: UIViewController {
     }
     
     @objc func moveToChatList() {
-//        setAnimation()
-//
-//        let chatListViewController = ChatListViewController()
-//        let navigationController = UINavigationController(rootViewController: chatListViewController)
-//        navigationController.modalPresentationStyle = .fullScreen
-//        present(navigationController, animated: true, completion: nil)
         self.presenter.tappedLoginButton()
     }
     
     @objc func moveToSignUp() {
-//        setAnimation()
-//
-//        let signUpViewController = SignUpViewController()
-//        signUpViewController.modalPresentationStyle = .fullScreen
-//        present(signUpViewController, animated: true, completion: nil)
         self.presenter.tappedSignUpButton()
     }
-    
-//    func setAnimation() {
-//        let transition = CATransition()
-//        transition.duration = 0.5
-//        transition.type = CATransitionType.push
-//        transition.subtype = CATransitionSubtype.fromRight
-//        view.window!.layer.add(transition, forKey: kCATransition)
-//    }
+
 }
 
 

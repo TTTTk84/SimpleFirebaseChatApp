@@ -5,9 +5,9 @@
 //  Created by tk84 on 2021/08/28.
 //
 
-import Foundation
+import UIKit
 
-protocol ChatViewProtocol {
+protocol ChatViewProtocol: Transitioner {
     func reloadTableView()
 }
 
@@ -20,7 +20,7 @@ protocol LoginRouterProtocol {
 class LoginRouter: LoginRouterProtocol {
 
     private(set) var view: ChatViewProtocol!
-    private let useCase = Application.shared.useCase
+    private let useCase: ChatUseCaseProtocol = Application.shared.useCase
 
 
     init(view: ChatViewProtocol) {
@@ -31,6 +31,12 @@ class LoginRouter: LoginRouterProtocol {
     }
 
     func transitionToLoginSuccess() {
+        let chatListViewController = ChatListViewController()
+        let chatListRouter = ChatListRouter(view: chatListViewController)
+        let chatListPresenter = ChatListPresenter(router: chatListRouter,
+                                                  useCase: self.useCase)
+        chatListViewController.inject(presenter: chatListPresenter)
+        self.view.pushViewController(chatListViewController, animated: true)
     }
 
 }

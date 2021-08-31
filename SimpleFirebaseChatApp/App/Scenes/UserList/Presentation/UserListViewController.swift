@@ -11,26 +11,37 @@ import UIKit
 class UserListViewController: UIViewController {
 
     let userTableView = UITableView()
-    let tempUserList = [
-        "user 1",
-        "user 2",
-        "user 3"
-    ]
 
+    private var presenter: UserListPresenterProtocol!
+
+    func inject(presenter: UserListPresenterProtocol) {
+        self.presenter = presenter
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
 
+        self.setupNavigation()
+        self.setupTableConstraint()
+    }
+
+    private func setupNavigation() {
         self.navigationController?.navigationBar.barTintColor = .navBarColor
         self.navigationItem.title = "登録ユーザ一覧"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-
-        self.view.addSubview(self.userTableView)
-        self.setupUserTableView()
+        let addUserButton = UIBarButtonItem(title: "追加", style: .plain, target: self, action: #selector(tappedAddUserButton))
+        self.navigationItem.rightBarButtonItem = addUserButton
+        self.navigationItem.rightBarButtonItem?.tintColor = .white
     }
 
-    private func setupUserTableView() {
+    @objc private func tappedAddUserButton() {
+        self.presenter.tappedAddUserButton()
+    }
+
+    private func setupTableConstraint() {
+        self.view.addSubview(self.userTableView)
+
         self.userTableView.delegate = self
         self.userTableView.dataSource = self
         self.userTableView.register(UINib(nibName: UserListCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: UserListCell.cellIdentifier)
@@ -50,23 +61,24 @@ extension UserListViewController: UITableViewDelegate,UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tempUserList.count
+        return self.presenter.numberOfUsers
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userTableView.dequeueReusableCell(withIdentifier: UserListCell.cellIdentifier) as! UserListCell
-        cell.partnerLabel.text = tempUserList[indexPath.row]
+
+        let user = self.presenter.checkUserListRow(forRow: indexPath.row)
+
+        cell.setupValue(partnerLabel: user!.username)
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped table view")
-//        let storyboard = UIStoryboard.init(name: "ChatRoom", bundle: nil)
-//        let chatRoomViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoomViewController") as! ChatRoomViewController
-//        chatRoomViewController.user = user
-//        chatRoomViewController.chatroom = chatroooms[indexPath.row]
-//        navigationController?.pushViewController(chatRoomViewController, animated: true)
-        
+
+        guard let selectedUser = self.presenter.checkUserListRow(forRow: indexPath.row) else {
+            return
+        }
+        self.presenter.addSelectedUsers(user: selectedUser)
     }
 }

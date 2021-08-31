@@ -33,7 +33,7 @@ class LoginRouter: LoginRouterProtocol {
     func transitionToLoginSuccess() {
         let chatListViewController = ChatListViewController()
         let chatListRouter = ChatListRouter(view: chatListViewController)
-        let chatListPresenter = ChatListPresenter(router: chatListRouter,
+        let chatListPresenter = ChatListPresenter(view: chatListViewController, router: chatListRouter,
                                                   useCase: self.useCase)
         chatListViewController.inject(presenter: chatListPresenter)
         self.view.pushViewController(chatListViewController, animated: true)

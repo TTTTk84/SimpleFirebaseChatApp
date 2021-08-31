@@ -34,6 +34,13 @@ class ChatListRouter: ChatListRouterProtocol {
     func transitionToNewChat() {
         let userListViewController = UserListViewController()
         let navigationController = UINavigationController(rootViewController: userListViewController)
+
+        let router = UserListRouter(view: userListViewController)
+        let presenter = UserListPresenter(view: userListViewController,
+                                          router: router,
+                                          useCase: self.useCase!)
+        userListViewController.inject(presenter: presenter)
+
         self.view.present(navigationController, animated: true, completion: nil)
     }
 

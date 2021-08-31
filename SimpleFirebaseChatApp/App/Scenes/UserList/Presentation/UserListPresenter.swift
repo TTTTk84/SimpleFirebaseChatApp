@@ -20,20 +20,20 @@ protocol UserListPresenterProtocol {
 
 class UserListPresenter {
 
-    private(set) var userList: [User] = [
-        User(dic: ["username": "user 1"]),
-        User(dic: ["username": "user 2"]),
-        User(dic: ["username": "user 3"]),
-        User(dic: ["username": "user 4"]),
-    ]
+    private(set) var userList: [User] = []
 
     private let router: UserListRouterProtocol!
-    private let useCase: ChatUseCaseProtocol!
+    private var useCase: ChatUseCaseProtocol!
     private var selectedUsers: [User]!
+    private var view: ChatViewProtocol!
 
-    init(router: UserListRouterProtocol, useCase: ChatUseCaseProtocol) {
+    init(view: ChatViewProtocol,router: UserListRouterProtocol, useCase: ChatUseCaseProtocol) {
+        self.view = view
         self.router = router
         self.useCase = useCase
+        self.useCase.userListOutput = self
+
+        self.useCase.fetchUserAll()
     }
 
 }
@@ -62,5 +62,11 @@ extension UserListPresenter: UserListPresenterProtocol {
         self.router.transitionToChatList()
     }
 
+}
 
+extension UserListPresenter: ChatUseCaseUserListOutput {
+    func useCaseDidUpdate(userList: [User]) {
+        self.userList = userList
+        self.view.reloadTableView()
+    }
 }

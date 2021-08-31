@@ -30,7 +30,7 @@ class UserListRouter: UserListRouterProtocol {
     }
 
     func transitionToChatList() {
-        self.view.popViewController(animated: true)
+        self.view.dismiss(animated: true, completion: nil)
     }
 
 

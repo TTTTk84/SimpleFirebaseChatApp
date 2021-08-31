@@ -75,10 +75,15 @@ extension UserListViewController: UITableViewDelegate,UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         guard let selectedUser = self.presenter.checkUserListRow(forRow: indexPath.row) else {
             return
         }
+        
         self.presenter.addSelectedUsers(user: selectedUser)
+    }
+}
+
+extension UserListViewController: ChatViewProtocol {
+    func reloadTableView() {
     }
 }

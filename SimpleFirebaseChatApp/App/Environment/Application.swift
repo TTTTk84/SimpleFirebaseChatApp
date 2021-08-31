@@ -38,17 +38,15 @@ class Application {
 
         self.useCase = ChatUseCase()
 
-//        let todoGateway = TodoGateway(useCase: self.useCase)
-//
-//        useCase.todoGateway = todoGateway
-//
-//        let todoDataStore = TodoDataStore()
-//        todoGateway.dataStore = todoDataStore
-
         let userGateway = UserGateway(useCase: self.useCase)
-
         self.useCase.userGateway = userGateway
-        
+        let userDataStore = UserDataStore()
+        userGateway.dataStore = userDataStore
+
+        let chatRoomGateway = ChatRoomGateway(useCase: self.useCase)
+        self.useCase.chatRoomGateway = chatRoomGateway
+        let chatRoomDataStore = ChatRoomDataStore()
+        chatRoomGateway.dataStore = chatRoomDataStore
 
     }
 

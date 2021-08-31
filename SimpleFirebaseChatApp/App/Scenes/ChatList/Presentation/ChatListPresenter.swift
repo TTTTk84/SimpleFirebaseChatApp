@@ -20,21 +20,19 @@ protocol ChatListPresenterProtocol {
 
 class ChatListPresenter {
 
-    private(set) var chatRoomList: [ChatRoom] = [
-        ChatRoom(dic: ["latestMessageId": "message1",
-                       "chatRoomName": "chatroom 1"]),
-        ChatRoom(dic: ["latestMessageId": "message2",
-                       "chatRoomName": "chatroom 2"]),
-        ChatRoom(dic: ["latestMessageId": "message3",
-                       "chatRoomName": "chatroom 3"]),
-    ]
+    private(set) var chatRoomList: [ChatRoom] = []
 
     private let router: ChatListRouterProtocol!
-    private let useCase: ChatUseCaseProtocol!
+    private var useCase: ChatUseCaseProtocol!
+    private let view: ChatViewProtocol!
 
-    init(router: ChatListRouterProtocol, useCase: ChatUseCaseProtocol) {
+    init(view: ChatViewProtocol, router: ChatListRouterProtocol, useCase: ChatUseCaseProtocol) {
+        self.view = view
         self.router = router
         self.useCase = useCase
+        self.useCase.chatListOutput = self
+
+        self.useCase.fetchChatRoomAll()
     }
 
 }
@@ -63,5 +61,14 @@ extension ChatListPresenter: ChatListPresenterProtocol {
     func tappedLogoutButton() {
         self.router.transitionToLogout()
     }
+
+}
+
+extension ChatListPresenter: ChatUseCaseChatListOutput {
+    func useCaseDidUpdate(chatroom: [ChatRoom]) {
+        self.chatRoomList = chatroom
+        self.view.reloadTableView()
+    }
+
 
 }

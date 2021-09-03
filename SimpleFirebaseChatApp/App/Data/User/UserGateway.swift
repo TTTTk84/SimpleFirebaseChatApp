@@ -11,7 +11,7 @@ import Firebase
 protocol UserGatewayProtocol {
     func login()
     func signUp()
-    func fetchAll(completion: ([User]) -> Void)
+    func fetchAll(completion: @escaping ([User]) -> Void)
 }
 
 class UserGateway {
@@ -33,7 +33,7 @@ extension UserGateway: UserGatewayProtocol {
     func signUp() {
     }
 
-    func fetchAll(completion: ([User]) -> Void) {
+    func fetchAll(completion: @escaping ([User]) -> Void) {
         dataStore.fetchAll() { [weak self] userList in
             guard self != nil else { return }
             completion(userList)

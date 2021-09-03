@@ -59,6 +59,8 @@ extension UserListPresenter: UserListPresenterProtocol {
     }
 
     func tappedAddUserButton() {
+        //
+        self.useCase.createChatRoom(chatRoomName: "new chatroom", members: selectedUsers)
         self.router.transitionToChatList()
     }
 

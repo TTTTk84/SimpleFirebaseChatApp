@@ -85,5 +85,6 @@ extension UserListViewController: UITableViewDelegate,UITableViewDataSource {
 
 extension UserListViewController: ChatViewProtocol {
     func reloadTableView() {
+        self.userTableView.reloadData()
     }
 }

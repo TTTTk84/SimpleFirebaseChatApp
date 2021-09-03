@@ -9,6 +9,7 @@ import Foundation
 
 protocol ChatRoomDataStoreProtocol {
     func fetchAll(completion: ([ChatRoom]) -> Void)
+    func createChatRoom(chatRoom: ChatRoom, completion: ([ChatRoom]) -> Void)
 }
 
 
@@ -29,8 +30,14 @@ class ChatRoomDataStore {
 }
 
 extension ChatRoomDataStore: ChatRoomDataStoreProtocol {
+
+
     func fetchAll(completion: ([ChatRoom]) -> Void) {
         completion(self.tempChatRoomArray)
     }
 
+    func createChatRoom(chatRoom: ChatRoom, completion: ([ChatRoom]) -> Void) {
+        self.tempChatRoomArray.append(chatRoom)
+        completion(self.tempChatRoomArray)
+    }
 }

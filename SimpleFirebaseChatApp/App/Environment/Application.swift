@@ -27,6 +27,7 @@ class Application {
                                             useCase: self.useCase)
         loginViewController.inject(presenter: loginPresenter)
 
+        //let vc = ViewController()
 
         window.rootViewController = navigationController
     }

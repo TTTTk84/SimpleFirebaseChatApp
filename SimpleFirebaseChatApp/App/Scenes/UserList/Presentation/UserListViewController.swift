@@ -22,6 +22,7 @@ class UserListViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
 
+        print("hogehoge")
         self.setupNavigation()
         self.setupTableConstraint()
     }

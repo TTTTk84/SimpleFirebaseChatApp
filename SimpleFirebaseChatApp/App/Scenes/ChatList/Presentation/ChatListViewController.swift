@@ -25,6 +25,13 @@ class ChatListViewController: UIViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        self.presenter.currentUser() { [weak self] user in
+            self?.navigationItem.title = user.username
+        }
+    }
+
     private func setupNavigation() {
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .navBarColor

@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 protocol UserDataStoreProtocol {
+    func getLoginUser(completion: @escaping (User) -> Void)
     func fetchAll(completion: @escaping ([User]) -> Void)
 }
 
@@ -29,10 +30,28 @@ class UserDataStore {
 }
 
 extension UserDataStore: UserDataStoreProtocol {
+    func getLoginUser(completion: @escaping (User) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        print("uid: \(uid)")
+
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+            if let err = err {
+                print("ユーザー情報の取得に失敗しました。\(err)")
+                return
+            }
+
+            guard let snapshot = snapshot, let dic = snapshot.data() else { return }
+
+            let user = User(dic: dic)
+            completion(user)
+        }
+    }
+
     func fetchAll(completion: @escaping ([User]) -> Void) {
         Firestore.firestore().collection("users").getDocuments {
             (snapshots, err) in
-            if let err = err {
+            self.users = []
+            if err != nil {
                 print("userの情報の取得に失敗しました")
                 return
             }
@@ -52,7 +71,6 @@ extension UserDataStore: UserDataStoreProtocol {
                 completion(self.users)
             })
         }
-        //completion(self.tempUserArray)
     }
 
 }

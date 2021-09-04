@@ -76,11 +76,17 @@ class SignUpViewController: UIViewController {
         button.addTarget(self, action: #selector(moveToLogin), for: .touchUpInside)
         return button
     }()
+
+    private var presenter: SignUpPresenterProtocol!
+
+    func inject(presenter: SignUpPresenterProtocol) {
+        self.presenter = presenter
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+
         view.addSubview(profileImageButton)
         view.addSubview(stackViews)
         view.addSubview(registerButton)
@@ -109,29 +115,24 @@ class SignUpViewController: UIViewController {
         
         
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
     
     @objc func moveToChatList() {
-        setAnimation()
-        
-        let chatListViewController = ChatListViewController()
-        let navigationController = UINavigationController(rootViewController: chatListViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true, completion: nil)
+        self.presenter.tappedSignUpButton()
     }
     
     @objc func moveToLogin() {
-        setAnimation()
-        
-        let loginViewController = LoginViewController()
-        loginViewController.modalPresentationStyle = .fullScreen
-        present(loginViewController, animated: true, completion: nil)
+        self.presenter.tappedLoginButton()
     }
-    
-    func setAnimation() {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
+
+}
+
+extension SignUpViewController: ChatViewProtocol {
+    func reloadTableView() {
     }
+
+
 }

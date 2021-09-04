@@ -28,6 +28,11 @@ class LoginRouter: LoginRouterProtocol {
     }
 
     func transitionToSignUp() {
+        let signUpViewController = SignUpViewController()
+        let signUpRouter = SignUpRouter(view: signUpViewController)
+        let signUpPresenter = SignUpPresenter(router: signUpRouter, useCase: self.useCase)
+        signUpViewController.inject(presenter: signUpPresenter)
+        self.view.pushViewController(signUpViewController, animated: true)
     }
 
     func transitionToLoginSuccess() {
@@ -36,6 +41,7 @@ class LoginRouter: LoginRouterProtocol {
         let chatListPresenter = ChatListPresenter(view: chatListViewController, router: chatListRouter,
                                                   useCase: self.useCase)
         chatListViewController.inject(presenter: chatListPresenter)
+        
         self.view.pushViewController(chatListViewController, animated: true)
     }
 

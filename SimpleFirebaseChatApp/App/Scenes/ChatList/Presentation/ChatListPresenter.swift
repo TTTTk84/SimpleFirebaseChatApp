@@ -11,6 +11,7 @@ import Foundation
 protocol ChatListPresenterProtocol {
     var numberOfUsers: Int { get }
 
+    func currentUser(completion: @escaping (User) -> Void)
     func didSelectRow(at indexPath: IndexPath)
     func checkChatRoomRow(forRow row: Int) -> ChatRoom?
     func tappedNewChatButton()
@@ -21,6 +22,7 @@ protocol ChatListPresenterProtocol {
 class ChatListPresenter {
 
     private(set) var chatRoomList: [ChatRoom] = []
+    private(set) var userTitle: String!
 
     private let router: ChatListRouterProtocol!
     private var useCase: ChatUseCaseProtocol!
@@ -39,8 +41,16 @@ class ChatListPresenter {
 
 extension ChatListPresenter: ChatListPresenterProtocol {
 
+
+
     var numberOfUsers: Int {
         return self.chatRoomList.count
+    }
+
+    func currentUser(completion: @escaping (User) -> Void) {
+        self.useCase.getLoginUser() { [weak self] user in
+            completion(user)
+        }
     }
 
     func checkChatRoomRow(forRow row: Int) -> ChatRoom? {
@@ -65,6 +75,10 @@ extension ChatListPresenter: ChatListPresenterProtocol {
 }
 
 extension ChatListPresenter: ChatUseCaseChatListOutput {
+    func useCaseTitleUpdate(title: String) {
+        self.userTitle = title
+    }
+
     func useCaseDidUpdate(chatroom: [ChatRoom]) {
         self.chatRoomList = chatroom
         self.view.reloadTableView()

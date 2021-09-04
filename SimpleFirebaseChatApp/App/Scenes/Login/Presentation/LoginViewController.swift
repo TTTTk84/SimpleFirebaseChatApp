@@ -94,8 +94,8 @@ class LoginViewController: UIViewController {
 
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.barTintColor = .white 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
 
     private func setupConstraint() {

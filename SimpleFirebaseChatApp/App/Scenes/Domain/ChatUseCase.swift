@@ -9,7 +9,7 @@ import Foundation
 
 protocol ChatUseCaseProtocol {
     func createUser()
-    func getLoginUser()
+    func getLoginUser(completion: @escaping (User) -> Void)
     func fetchUserAll()
 
     func fetchChatRoomAll()
@@ -24,6 +24,7 @@ protocol ChatUseCaseProtocol {
 
 protocol ChatUseCaseChatListOutput {
     func useCaseDidUpdate(chatroom: [ChatRoom])
+    func useCaseTitleUpdate(title: String)
 }
 
 protocol ChatUseCaseUserListOutput {
@@ -58,7 +59,10 @@ extension ChatUseCase: ChatUseCaseProtocol {
     func createUser() {
     }
 
-    func getLoginUser() {
+    func getLoginUser(completion: @escaping (User) -> Void) {
+        self.userGateway.getLoginUser() { [weak self] user in
+            completion(user)
+        }
     }
 
 

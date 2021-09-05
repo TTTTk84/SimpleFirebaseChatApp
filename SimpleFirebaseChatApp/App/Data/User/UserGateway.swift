@@ -8,10 +8,11 @@
 import Foundation
 
 protocol UserGatewayProtocol {
-    func login()
-    func signUp()
     func getLoginUser(completion: @escaping (User) -> Void)
     func fetchAll(completion: @escaping ([User]) -> Void)
+    func checkLoginUser(email: String,
+                        passWord: String,
+                        completion: @escaping (Bool) -> Void)
 }
 
 class UserGateway {
@@ -26,13 +27,16 @@ class UserGateway {
 }
 
 extension UserGateway: UserGatewayProtocol {
-
-
-    func login() {
+    func checkLoginUser(email: String,
+                        passWord: String,
+                        completion: @escaping (Bool) -> Void) {
+        dataStore.checkLoginUser(email: email,
+                                 passWord: passWord) { [weak self] bool in
+            completion(bool)
+        }
     }
 
-    func signUp() {
-    }
+
 
     func getLoginUser(completion: @escaping (User) -> Void) {
         dataStore.getLoginUser() { [weak self] user in

@@ -11,6 +11,9 @@ import Firebase
 protocol UserDataStoreProtocol {
     func getLoginUser(completion: @escaping (User) -> Void)
     func fetchAll(completion: @escaping ([User]) -> Void)
+    func checkLoginUser(email: String,
+                        passWord: String,
+                        completion: @escaping (Bool) -> Void)
 }
 
 class UserDataStore {
@@ -30,6 +33,21 @@ class UserDataStore {
 }
 
 extension UserDataStore: UserDataStoreProtocol {
+    func checkLoginUser(email: String,
+                        passWord: String,
+                        completion: @escaping (Bool) -> Void) {
+
+        Auth.auth().signIn(withEmail: email, password: passWord) { (res, err) in
+            if let err = err {
+                print("ログインに失敗しました \(err)")
+                completion(false)
+                return
+            }
+            completion(true)
+        }
+
+    }
+
     func getLoginUser(completion: @escaping (User) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         print("uid: \(uid)")

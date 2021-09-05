@@ -27,19 +27,30 @@ class LoginViewController: UIViewController {
         stackView.spacing = widthValue * 0.1
         return stackView
     }()
+
+    lazy var emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "メールアドレス"
+        return textField
+    }()
+
+    lazy var passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "パスワード"
+        return textField
+    }()
     
     lazy var formStackViews: [UIStackView] = {
         var stackViews: [UIStackView] = []
         let labelNames: [String] = ["email", "password"]
-        let placeholderNames: [String] = ["メールアドレス","パスワード"]
+        let textFields: [UITextField] = [emailTextField, passwordTextField]
         
         for i in 0 ..< 2 {
             var stackView: UIStackView = UIStackView()
             let label = UILabel()
-            let form = UITextField()
+            let form = textFields[i]
             stackView.translatesAutoresizingMaskIntoConstraints = false
             label.text = labelNames[i]
-            form.placeholder = placeholderNames[i]
             stackView.axis = .vertical
             stackView.alignment = .fill
             stackView.distribution = .fillEqually
@@ -117,7 +128,18 @@ class LoginViewController: UIViewController {
     }
     
     @objc func moveToChatList() {
-        self.presenter.tappedLoginButton()
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+
+        self.presenter.checkLoginUser(email: email,
+                                      passWord: password) {
+            [weak self] bool in
+            if bool {
+                self?.presenter.tappedLoginButton()
+            }
+            
+            return
+        }
     }
     
     @objc func moveToSignUp() {

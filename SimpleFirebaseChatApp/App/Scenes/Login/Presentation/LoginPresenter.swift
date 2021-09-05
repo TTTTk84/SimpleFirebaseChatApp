@@ -10,8 +10,10 @@ import Foundation
 protocol LoginPresenterProtocol {
     func tappedLoginButton()
     func tappedSignUpButton()
+    func checkLoginUser(email: String,
+                        passWord: String,
+                        completion: @escaping (Bool) -> Void)
 }
-
 
 class LoginPresenter {
 
@@ -26,6 +28,17 @@ class LoginPresenter {
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
+
+    func checkLoginUser(email: String,
+                        passWord: String,
+                        completion: @escaping (Bool) -> Void) {
+        self.useCase.checkLoginUser(email: email,
+                                    passWord: passWord)
+        { [weak self] bool in
+            completion(bool)
+        }
+    }
+
     func tappedSignUpButton() {
         self.router.transitionToSignUp()
     }

@@ -10,6 +10,9 @@ import Foundation
 protocol ChatUseCaseProtocol {
     func createUser()
     func getLoginUser(completion: @escaping (User) -> Void)
+    func checkLoginUser(email: String,
+                        passWord: String,
+                        completion: @escaping (Bool) -> Void)
     func fetchUserAll()
 
     func fetchChatRoomAll()
@@ -47,6 +50,13 @@ class ChatUseCase {
 }
 
 extension ChatUseCase: ChatUseCaseProtocol {
+    func checkLoginUser(email: String, passWord: String, completion: @escaping (Bool) -> Void) {
+        self.userGateway.checkLoginUser(email: email,
+                                        passWord: passWord) {[weak self] bool in
+            completion(bool)
+        }
+    }
+
 
     func fetchUserAll() {
         self.userGateway.fetchAll() { [weak self] userList in

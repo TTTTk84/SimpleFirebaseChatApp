@@ -59,6 +59,7 @@
 		54EF57AA26DA04B100F92080 /* UserListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57A926DA04B100F92080 /* UserListRouter.swift */; };
 		54EF57AC26DA04BB00F92080 /* ChatRoomRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57AB26DA04BB00F92080 /* ChatRoomRouter.swift */; };
 		54EF57AE26DA04D000F92080 /* UserDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57AD26DA04D000F92080 /* UserDetailRouter.swift */; };
+		54FAA38926E6C71B009493AD /* AddChatRoomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FAA38826E6C71B009493AD /* AddChatRoomAlert.swift */; };
 		851C1ADAF1420D8CF3658B2C /* Pods_SimpleFirebaseChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD160BF18C37B5B45A1B10F9 /* Pods_SimpleFirebaseChatApp.framework */; };
 		C931070A9306068AE2F4DF4B /* Pods_SimpleFirebaseChatApp_SimpleFirebaseChatAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D718DFFAF958FF9E4227BE /* Pods_SimpleFirebaseChatApp_SimpleFirebaseChatAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -138,6 +139,7 @@
 		54EF57A926DA04B100F92080 /* UserListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRouter.swift; sourceTree = "<group>"; };
 		54EF57AB26DA04BB00F92080 /* ChatRoomRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomRouter.swift; sourceTree = "<group>"; };
 		54EF57AD26DA04D000F92080 /* UserDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRouter.swift; sourceTree = "<group>"; };
+		54FAA38826E6C71B009493AD /* AddChatRoomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChatRoomAlert.swift; sourceTree = "<group>"; };
 		61F6D2BE437273217E3B86D9 /* Pods-SimpleFirebaseChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleFirebaseChatApp.debug.xcconfig"; path = "Target Support Files/Pods-SimpleFirebaseChatApp/Pods-SimpleFirebaseChatApp.debug.xcconfig"; sourceTree = "<group>"; };
 		87B2884D89E678379B52610E /* Pods-SimpleFirebaseChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleFirebaseChatApp.release.xcconfig"; path = "Target Support Files/Pods-SimpleFirebaseChatApp/Pods-SimpleFirebaseChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		AD160BF18C37B5B45A1B10F9 /* Pods_SimpleFirebaseChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleFirebaseChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -537,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				543D954A26D615F8009E2946 /* UserListCell.swift */,
+				54FAA38826E6C71B009493AD /* AddChatRoomAlert.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 				54EF579726D9E27E00F92080 /* UserDataStore.swift in Sources */,
 				543D952B26D5DE33009E2946 /* UserListPresenter.swift in Sources */,
 				543D955426D62031009E2946 /* ChatRoomCurrentUserCell.swift in Sources */,
+				54FAA38926E6C71B009493AD /* AddChatRoomAlert.swift in Sources */,
 				54EF579B26D9E29600F92080 /* ChatRoomDataStore.swift in Sources */,
 				54EF579D26D9E2A300F92080 /* MessageGateway.swift in Sources */,
 				543D953426D5E886009E2946 /* ChatRoom.swift in Sources */,

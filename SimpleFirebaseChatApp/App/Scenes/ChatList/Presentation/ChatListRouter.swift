@@ -20,8 +20,8 @@ class ChatListRouter: ChatListRouterProtocol {
 
 
     private(set) var view: ChatViewProtocol!
-    private let useCase = Application.shared.useCase
-
+    private let userUseCase: UserUsecaseProtocol = Application.shared.userUseCase
+    private let chatRoomUseCase: ChatRoomUsecaseProtocol = Application.shared.chatRoomUseCase
 
     init(view: ChatViewProtocol) {
         self.view = view
@@ -38,7 +38,8 @@ class ChatListRouter: ChatListRouterProtocol {
         let router = UserListRouter(view: userListViewController)
         let presenter = UserListPresenter(view: userListViewController,
                                           router: router,
-                                          useCase: self.useCase!)
+                                          userUseCase: self.userUseCase,
+                                          chatRoomUseCase: self.chatRoomUseCase)
         userListViewController.inject(presenter: presenter)
 
         self.view.present(navigationController, animated: true, completion: nil)

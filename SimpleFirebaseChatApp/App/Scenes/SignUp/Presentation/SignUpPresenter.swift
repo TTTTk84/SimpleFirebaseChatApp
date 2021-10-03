@@ -16,11 +16,11 @@ protocol SignUpPresenterProtocol {
 class SignUpPresenter {
 
     private let router: SignUpRouter!
-    private let useCase: ChatUseCaseProtocol!
+    private let userUseCase: UserUsecaseProtocol!
 
-    init(router: SignUpRouter, useCase: ChatUseCaseProtocol) {
+    init(router: SignUpRouter, userUseCase: UserUsecaseProtocol) {
         self.router = router
-        self.useCase = useCase
+        self.userUseCase = userUseCase
     }
 
 }

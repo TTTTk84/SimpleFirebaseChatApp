@@ -8,8 +8,6 @@
 import Foundation
 
 
-
-
 protocol ChatRoomGatewayProtocol {
     func fetchAll(completion: ([ChatRoom]) -> Void)
     func createChatRoom(chatRoom: ChatRoom, completion: ([ChatRoom]) -> Void)
@@ -17,20 +15,15 @@ protocol ChatRoomGatewayProtocol {
 
 class ChatRoomGateway {
 
-    var useCase: ChatUseCaseProtocol!
+    var useCase: ChatRoomUsecaseProtocol!
     var dataStore: ChatRoomDataStoreProtocol!
 
-    init(useCase: ChatUseCaseProtocol) {
-        self.useCase = useCase
+    init(chatRoomUseCase: ChatRoomUsecaseProtocol) {
+        self.useCase = chatRoomUseCase
     }
 }
 
 extension ChatRoomGateway: ChatRoomGatewayProtocol {
-
-
-
-
-
 
     func fetchAll(completion: ([ChatRoom]) -> Void) {
 

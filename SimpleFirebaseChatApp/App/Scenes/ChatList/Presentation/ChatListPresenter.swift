@@ -25,30 +25,32 @@ class ChatListPresenter {
     private(set) var userTitle: String!
 
     private let router: ChatListRouterProtocol!
-    private var useCase: ChatUseCaseProtocol!
+    private var userUseCase: UserUsecaseProtocol!
+    private var chatRoomUseCase: ChatRoomUsecaseProtocol!
     private let view: ChatViewProtocol!
 
-    init(view: ChatViewProtocol, router: ChatListRouterProtocol, useCase: ChatUseCaseProtocol) {
+    init(view: ChatViewProtocol,
+         router: ChatListRouterProtocol,
+         userUseCase: UserUsecaseProtocol,
+         chatRoomUseCase: ChatRoomUsecaseProtocol) {
         self.view = view
         self.router = router
-        self.useCase = useCase
-        self.useCase.chatListOutput = self
-
-        self.useCase.fetchChatRoomAll()
+        self.userUseCase = userUseCase
+        self.chatRoomUseCase = chatRoomUseCase
+        self.chatRoomUseCase.chatListOutput = self
+        self.chatRoomUseCase.fetchChatRoomAll()
     }
 
 }
 
 extension ChatListPresenter: ChatListPresenterProtocol {
 
-
-
     var numberOfUsers: Int {
         return self.chatRoomList.count
     }
 
     func currentUser(completion: @escaping (User) -> Void) {
-        self.useCase.getLoginUser() { [weak self] user in
+        self.userUseCase.getLoginUser() { [weak self] user in
             completion(user)
         }
     }

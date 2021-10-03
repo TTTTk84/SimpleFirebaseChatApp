@@ -17,7 +17,7 @@ class UserListRouter: UserListRouterProtocol {
 
 
     private(set) var view: ChatViewProtocol!
-    private let useCase = Application.shared.useCase
+//    private let useCase = Application.shared.useCase
 
 
     init(view: ChatViewProtocol) {

@@ -14,7 +14,9 @@ class Application {
     static let shared = Application()
     private init() {}
 
-    private(set) var useCase: ChatUseCaseProtocol!
+    private(set) var userUseCase: UserUsecaseProtocol!
+    private(set) var chatRoomUseCase: ChatRoomUsecaseProtocol!
+//    private(set) var messageUseCase:
 
     func configure(with window: UIWindow) {
         buildLayer()
@@ -24,7 +26,7 @@ class Application {
 
         let loginRouter = LoginRouter(view: loginViewController)
         let loginPresenter = LoginPresenter(router: loginRouter,
-                                            useCase: self.useCase)
+                                            useCase: self.userUseCase)
         loginViewController.inject(presenter: loginPresenter)
 
         //let vc = ViewController()
@@ -37,15 +39,16 @@ class Application {
 
     private func buildLayer() {
 
-        self.useCase = ChatUseCase()
+        self.userUseCase = UserUseCase()
+        self.chatRoomUseCase = ChatRoomUsecase()
 
-        let userGateway = UserGateway(useCase: self.useCase)
-        self.useCase.userGateway = userGateway
+        let userGateway = UserGateway(userUseCase: self.userUseCase)
+        self.userUseCase.userGateway = userGateway
         let userDataStore = UserDataStore()
         userGateway.dataStore = userDataStore
 
-        let chatRoomGateway = ChatRoomGateway(useCase: self.useCase)
-        self.useCase.chatRoomGateway = chatRoomGateway
+        let chatRoomGateway = ChatRoomGateway(chatRoomUseCase: self.chatRoomUseCase)
+        self.chatRoomUseCase.chatRoomGateway = chatRoomGateway
         let chatRoomDataStore = ChatRoomDataStore()
         chatRoomGateway.dataStore = chatRoomDataStore
 

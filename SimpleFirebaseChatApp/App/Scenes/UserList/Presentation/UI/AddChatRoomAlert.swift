@@ -9,10 +9,10 @@ import UIKit
 
 class AddChatRoomAlert {
 
-    var useCase: ChatUseCaseProtocol!
+    var useCase: ChatRoomUsecaseProtocol!
     var selectedUsers: [User]!
 
-    init(selectedUsers: [User], useCase: ChatUseCaseProtocol) {
+    init(selectedUsers: [User], useCase: ChatRoomUsecaseProtocol) {
         self.useCase = useCase
         self.selectedUsers = selectedUsers
 

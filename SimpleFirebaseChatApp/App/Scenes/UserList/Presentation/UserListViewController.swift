@@ -22,15 +22,21 @@ class UserListViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
 
-        print("hogehoge")
         self.setupNavigation()
         self.setupTableConstraint()
     }
 
     private func setupNavigation() {
-        self.navigationController?.navigationBar.barTintColor = .navBarColor
+        self.view.backgroundColor = .white
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .navBarColor
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
         self.navigationItem.title = "登録ユーザ一覧"
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+
         let addUserButton = UIBarButtonItem(title: "追加", style: .plain, target: self, action: #selector(tappedAddUserButton))
         self.navigationItem.rightBarButtonItem = addUserButton
         self.navigationItem.rightBarButtonItem?.tintColor = .white

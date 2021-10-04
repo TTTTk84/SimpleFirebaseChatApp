@@ -20,7 +20,8 @@ protocol LoginRouterProtocol {
 class LoginRouter: LoginRouterProtocol {
 
     private(set) var view: ChatViewProtocol!
-    private let useCase: ChatUseCaseProtocol = Application.shared.useCase
+    private let userUseCase: UserUsecaseProtocol = Application.shared.userUseCase
+    private let chatRoomUseCase: ChatRoomUsecaseProtocol = Application.shared.chatRoomUseCase
 
 
     init(view: ChatViewProtocol) {
@@ -30,7 +31,7 @@ class LoginRouter: LoginRouterProtocol {
     func transitionToSignUp() {
         let signUpViewController = SignUpViewController()
         let signUpRouter = SignUpRouter(view: signUpViewController)
-        let signUpPresenter = SignUpPresenter(router: signUpRouter, useCase: self.useCase)
+        let signUpPresenter = SignUpPresenter(router: signUpRouter, userUseCase: self.userUseCase)
         signUpViewController.inject(presenter: signUpPresenter)
         self.view.pushViewController(signUpViewController, animated: true)
     }
@@ -38,8 +39,11 @@ class LoginRouter: LoginRouterProtocol {
     func transitionToLoginSuccess() {
         let chatListViewController = ChatListViewController()
         let chatListRouter = ChatListRouter(view: chatListViewController)
-        let chatListPresenter = ChatListPresenter(view: chatListViewController, router: chatListRouter,
-                                                  useCase: self.useCase)
+        let chatListPresenter = ChatListPresenter(view:
+                                                    chatListViewController,
+                                                  router: chatListRouter,
+                                                  userUseCase: self.userUseCase,
+                                                  chatRoomUseCase: self.chatRoomUseCase)
         chatListViewController.inject(presenter: chatListPresenter)
         
         self.view.pushViewController(chatListViewController, animated: true)

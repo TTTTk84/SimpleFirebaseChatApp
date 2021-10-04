@@ -17,11 +17,11 @@ protocol UserGatewayProtocol {
 
 class UserGateway {
 
-    var useCase: ChatUseCaseProtocol!
+    var userUseCase: UserUsecaseProtocol!
     var dataStore: UserDataStoreProtocol!
 
-    init(useCase: ChatUseCaseProtocol) {
-        self.useCase = useCase
+    init(userUseCase: UserUsecaseProtocol) {
+        self.userUseCase = userUseCase
     }
 
 }

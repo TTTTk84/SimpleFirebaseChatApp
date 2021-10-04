@@ -22,11 +22,11 @@ class ChatListViewController: UIViewController {
 
         setupNavigation()
         setupTableConstraint()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+
         self.presenter.currentUser() { [weak self] user in
             self?.navigationItem.title = user.username
         }
@@ -34,9 +34,15 @@ class ChatListViewController: UIViewController {
 
     private func setupNavigation() {
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = .navBarColor
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .navBarColor
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
         self.navigationItem.title = "トーク一覧"
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+
 
         let rigntBarBtn = UIBarButtonItem(title: "新規チャット", style: .plain, target: self, action: #selector(tappedNewChatButton))
         let logoutBarBtn = UIBarButtonItem(title: "ログアウト", style: .plain, target: self, action: #selector(tappedToLogoutButton))

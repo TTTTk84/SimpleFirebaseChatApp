@@ -18,11 +18,11 @@ protocol LoginPresenterProtocol {
 class LoginPresenter {
 
     private let router: LoginRouter!
-    private let useCase: ChatUseCaseProtocol!
+    private let userUseCase: UserUsecaseProtocol!
 
-    init(router: LoginRouter, useCase: ChatUseCaseProtocol) {
+    init(router: LoginRouter, useCase: UserUsecaseProtocol) {
         self.router = router
-        self.useCase = useCase
+        self.userUseCase = useCase
     }
 
 }
@@ -32,7 +32,7 @@ extension LoginPresenter: LoginPresenterProtocol {
     func checkLoginUser(email: String,
                         passWord: String,
                         completion: @escaping (Bool) -> Void) {
-        self.useCase.checkLoginUser(email: email,
+        self.userUseCase.checkLoginUser(email: email,
                                     passWord: passWord)
         { [weak self] bool in
             completion(bool)

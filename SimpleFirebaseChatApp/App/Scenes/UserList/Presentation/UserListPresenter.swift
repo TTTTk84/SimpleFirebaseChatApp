@@ -23,17 +23,22 @@ class UserListPresenter {
     private(set) var userList: [User] = []
 
     private let router: UserListRouterProtocol!
-    private var useCase: ChatUseCaseProtocol!
+    private var userUseCase: UserUsecaseProtocol!
+    private var chatRoomUseCase: ChatRoomUsecaseProtocol!
     private var selectedUsers: [User]!
     private var view: ChatViewProtocol!
 
-    init(view: ChatViewProtocol,router: UserListRouterProtocol, useCase: ChatUseCaseProtocol) {
+    init(view: ChatViewProtocol,
+         router: UserListRouterProtocol,
+         userUseCase: UserUsecaseProtocol,
+         chatRoomUseCase: ChatRoomUsecaseProtocol) {
         self.view = view
         self.router = router
-        self.useCase = useCase
-        self.useCase.userListOutput = self
-
-        self.useCase.fetchUserAll()
+        self.userUseCase = userUseCase
+        self.chatRoomUseCase = chatRoomUseCase
+        self.userUseCase.userListOutput = self
+//        self.chatRoomUseCase.chatListOutput = view
+        self.userUseCase.fetchUserAll()
     }
 
 }
@@ -59,7 +64,9 @@ extension UserListPresenter: UserListPresenterProtocol {
     }
 
     func tappedAddUserButton() {
-        self.useCase.createChatRoom(chatRoomName: "new chatroom", members: selectedUsers)
+        let alert = AddChatRoomAlert(selectedUsers: self.selectedUsers,
+                                     useCase: self.chatRoomUseCase)
+        alert.createChatRoomAlert()
         self.router.transitionToChatList()
     }
 
@@ -67,6 +74,7 @@ extension UserListPresenter: UserListPresenterProtocol {
 
 extension UserListPresenter: ChatUseCaseUserListOutput {
     func useCaseDidUpdate(userList: [User]) {
+
         self.userList = userList
         self.view.reloadTableView()
     }

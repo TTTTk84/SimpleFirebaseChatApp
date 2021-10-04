@@ -10,7 +10,6 @@
 		048002D74C9E0FAE340F0815 /* Pods_SimpleFirebaseChatAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FDD1C7A627118A5982751 /* Pods_SimpleFirebaseChatAppTests.framework */; };
 		542D5B8226D741A5000CE9CE /* UserDetailCurrentUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542D5B8126D741A5000CE9CE /* UserDetailCurrentUserView.swift */; };
 		542D5B8426D741B8000CE9CE /* UserDetailPartnerUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542D5B8326D741B8000CE9CE /* UserDetailPartnerUserView.swift */; };
-		543D950A26D5B5EE009E2946 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 543D950926D5B5EE009E2946 /* GoogleService-Info.plist */; };
 		543D952126D5DCD7009E2946 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D952026D5DCD7009E2946 /* Application.swift */; };
 		543D952326D5DCE0009E2946 /* Transitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D952226D5DCE0009E2946 /* Transitioner.swift */; };
 		543D952526D5DDDC009E2946 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D952426D5DDDC009E2946 /* SignUpPresenter.swift */; };
@@ -34,6 +33,10 @@
 		543D955426D62031009E2946 /* ChatRoomCurrentUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D955326D62031009E2946 /* ChatRoomCurrentUserCell.swift */; };
 		543D955626D6204D009E2946 /* ChatRoomPartnerUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D955526D6204D009E2946 /* ChatRoomPartnerUserCell.swift */; };
 		543D955826D62065009E2946 /* ChatRoomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D955726D62065009E2946 /* ChatRoomInputView.swift */; };
+		5474731627093F8500FB53D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5474731527093F8500FB53D1 /* GoogleService-Info.plist */; };
+		547473182709437C00FB53D1 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547473172709437C00FB53D1 /* UserUseCase.swift */; };
+		5474731A270944C700FB53D1 /* MessageUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54747319270944C700FB53D1 /* MessageUsecase.swift */; };
+		5474731C2709C58A00FB53D1 /* ChatRoomUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5474731B2709C58A00FB53D1 /* ChatRoomUseCase.swift */; };
 		54EBB9E526C7781E00A8861A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB9E426C7781E00A8861A /* AppDelegate.swift */; };
 		54EBB9E726C7781E00A8861A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB9E626C7781E00A8861A /* SceneDelegate.swift */; };
 		54EBB9E926C7781E00A8861A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB9E826C7781E00A8861A /* ViewController.swift */; };
@@ -52,13 +55,13 @@
 		54EF579B26D9E29600F92080 /* ChatRoomDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF579A26D9E29600F92080 /* ChatRoomDataStore.swift */; };
 		54EF579D26D9E2A300F92080 /* MessageGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF579C26D9E2A300F92080 /* MessageGateway.swift */; };
 		54EF579F26D9E2AE00F92080 /* MessageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF579E26D9E2AE00F92080 /* MessageDataStore.swift */; };
-		54EF57A226DA036A00F92080 /* ChatUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57A126DA036A00F92080 /* ChatUseCase.swift */; };
 		54EF57A426DA049200F92080 /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57A326DA049200F92080 /* SignUpRouter.swift */; };
 		54EF57A626DA049B00F92080 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57A526DA049B00F92080 /* LoginRouter.swift */; };
 		54EF57A826DA04A600F92080 /* ChatListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57A726DA04A600F92080 /* ChatListRouter.swift */; };
 		54EF57AA26DA04B100F92080 /* UserListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57A926DA04B100F92080 /* UserListRouter.swift */; };
 		54EF57AC26DA04BB00F92080 /* ChatRoomRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57AB26DA04BB00F92080 /* ChatRoomRouter.swift */; };
 		54EF57AE26DA04D000F92080 /* UserDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EF57AD26DA04D000F92080 /* UserDetailRouter.swift */; };
+		54FAA38926E6C71B009493AD /* AddChatRoomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FAA38826E6C71B009493AD /* AddChatRoomAlert.swift */; };
 		851C1ADAF1420D8CF3658B2C /* Pods_SimpleFirebaseChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD160BF18C37B5B45A1B10F9 /* Pods_SimpleFirebaseChatApp.framework */; };
 		C931070A9306068AE2F4DF4B /* Pods_SimpleFirebaseChatApp_SimpleFirebaseChatAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D718DFFAF958FF9E4227BE /* Pods_SimpleFirebaseChatApp_SimpleFirebaseChatAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -83,7 +86,6 @@
 /* Begin PBXFileReference section */
 		542D5B8126D741A5000CE9CE /* UserDetailCurrentUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCurrentUserView.swift; sourceTree = "<group>"; };
 		542D5B8326D741B8000CE9CE /* UserDetailPartnerUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailPartnerUserView.swift; sourceTree = "<group>"; };
-		543D950926D5B5EE009E2946 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		543D952026D5DCD7009E2946 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		543D952226D5DCE0009E2946 /* Transitioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitioner.swift; sourceTree = "<group>"; };
 		543D952426D5DDDC009E2946 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
@@ -107,6 +109,10 @@
 		543D955326D62031009E2946 /* ChatRoomCurrentUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCurrentUserCell.swift; sourceTree = "<group>"; };
 		543D955526D6204D009E2946 /* ChatRoomPartnerUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomPartnerUserCell.swift; sourceTree = "<group>"; };
 		543D955726D62065009E2946 /* ChatRoomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomInputView.swift; sourceTree = "<group>"; };
+		5474731527093F8500FB53D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		547473172709437C00FB53D1 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		54747319270944C700FB53D1 /* MessageUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUsecase.swift; sourceTree = "<group>"; };
+		5474731B2709C58A00FB53D1 /* ChatRoomUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomUseCase.swift; sourceTree = "<group>"; };
 		54EBB9E126C7781E00A8861A /* SimpleFirebaseChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleFirebaseChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54EBB9E426C7781E00A8861A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54EBB9E626C7781E00A8861A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,13 +137,13 @@
 		54EF579A26D9E29600F92080 /* ChatRoomDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomDataStore.swift; sourceTree = "<group>"; };
 		54EF579C26D9E2A300F92080 /* MessageGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGateway.swift; sourceTree = "<group>"; };
 		54EF579E26D9E2AE00F92080 /* MessageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataStore.swift; sourceTree = "<group>"; };
-		54EF57A126DA036A00F92080 /* ChatUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUseCase.swift; sourceTree = "<group>"; };
 		54EF57A326DA049200F92080 /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
 		54EF57A526DA049B00F92080 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		54EF57A726DA04A600F92080 /* ChatListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListRouter.swift; sourceTree = "<group>"; };
 		54EF57A926DA04B100F92080 /* UserListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRouter.swift; sourceTree = "<group>"; };
 		54EF57AB26DA04BB00F92080 /* ChatRoomRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomRouter.swift; sourceTree = "<group>"; };
 		54EF57AD26DA04D000F92080 /* UserDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRouter.swift; sourceTree = "<group>"; };
+		54FAA38826E6C71B009493AD /* AddChatRoomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChatRoomAlert.swift; sourceTree = "<group>"; };
 		61F6D2BE437273217E3B86D9 /* Pods-SimpleFirebaseChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleFirebaseChatApp.debug.xcconfig"; path = "Target Support Files/Pods-SimpleFirebaseChatApp/Pods-SimpleFirebaseChatApp.debug.xcconfig"; sourceTree = "<group>"; };
 		87B2884D89E678379B52610E /* Pods-SimpleFirebaseChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleFirebaseChatApp.release.xcconfig"; path = "Target Support Files/Pods-SimpleFirebaseChatApp/Pods-SimpleFirebaseChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		AD160BF18C37B5B45A1B10F9 /* Pods_SimpleFirebaseChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleFirebaseChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,7 +199,6 @@
 		543D950B26D5B78B009E2946 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				54EF57AF26DA11DA00F92080 /* Protocol */,
 				543D953F26D5F3AD009E2946 /* Extensions */,
 				543D950E26D5B7A1009E2946 /* Environment */,
 				543D950D26D5B79B009E2946 /* Data */,
@@ -499,9 +504,9 @@
 				54EBB9E426C7781E00A8861A /* AppDelegate.swift */,
 				54EBB9E626C7781E00A8861A /* SceneDelegate.swift */,
 				54EBB9E826C7781E00A8861A /* ViewController.swift */,
+				5474731527093F8500FB53D1 /* GoogleService-Info.plist */,
 				54EBB9ED26C7781F00A8861A /* Assets.xcassets */,
 				54EBB9EF26C7781F00A8861A /* LaunchScreen.storyboard */,
-				543D950926D5B5EE009E2946 /* GoogleService-Info.plist */,
 				54EBB9F226C7781F00A8861A /* Info.plist */,
 			);
 			path = SimpleFirebaseChatApp;
@@ -537,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				543D954A26D615F8009E2946 /* UserListCell.swift */,
+				54FAA38826E6C71B009493AD /* AddChatRoomAlert.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -563,16 +569,11 @@
 		54EF57A026DA02FD00F92080 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				54EF57A126DA036A00F92080 /* ChatUseCase.swift */,
+				547473172709437C00FB53D1 /* UserUseCase.swift */,
+				54747319270944C700FB53D1 /* MessageUsecase.swift */,
+				5474731B2709C58A00FB53D1 /* ChatRoomUseCase.swift */,
 			);
 			path = Domain;
-			sourceTree = "<group>";
-		};
-		54EF57AF26DA11DA00F92080 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		8668F3385DE7B3198AAE197F /* Frameworks */ = {
@@ -694,11 +695,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				54EBB9F126C7781F00A8861A /* LaunchScreen.storyboard in Resources */,
+				5474731627093F8500FB53D1 /* GoogleService-Info.plist in Resources */,
 				543D954426D608CF009E2946 /* ChatListCell.xib in Resources */,
 				543D954926D614C1009E2946 /* UserListCell.xib in Resources */,
 				54EBB9EE26C7781F00A8861A /* Assets.xcassets in Resources */,
 				543D955026D61BDF009E2946 /* ChatRoomPartnerUserCell.xib in Resources */,
-				543D950A26D5B5EE009E2946 /* GoogleService-Info.plist in Resources */,
 				543D955226D61CB3009E2946 /* ChatRoomInputView.xib in Resources */,
 				543D954E26D61BC7009E2946 /* ChatRoomCurrentUserCell.xib in Resources */,
 			);
@@ -832,14 +833,15 @@
 				543D952726D5DDEB009E2946 /* LoginPresenter.swift in Sources */,
 				54EF579926D9E28A00F92080 /* ChatRoomGateway.swift in Sources */,
 				542D5B8226D741A5000CE9CE /* UserDetailCurrentUserView.swift in Sources */,
-				54EF57A226DA036A00F92080 /* ChatUseCase.swift in Sources */,
 				543D952126D5DCD7009E2946 /* Application.swift in Sources */,
+				547473182709437C00FB53D1 /* UserUseCase.swift in Sources */,
 				543D952926D5DE23009E2946 /* ChatListPresenter.swift in Sources */,
 				54EF579526D9E27400F92080 /* UserGateway.swift in Sources */,
 				543D953626D5E88D009E2946 /* Message.swift in Sources */,
 				54EF57AA26DA04B100F92080 /* UserListRouter.swift in Sources */,
 				54EF57A626DA049B00F92080 /* LoginRouter.swift in Sources */,
 				54EBB9E926C7781E00A8861A /* ViewController.swift in Sources */,
+				5474731A270944C700FB53D1 /* MessageUsecase.swift in Sources */,
 				543D953226D5E874009E2946 /* User.swift in Sources */,
 				54EF57AC26DA04BB00F92080 /* ChatRoomRouter.swift in Sources */,
 				543D955826D62065009E2946 /* ChatRoomInputView.swift in Sources */,
@@ -855,8 +857,10 @@
 				54EBBA2126C78F4600A8861A /* ChatRoomViewController.swift in Sources */,
 				54EBBA1B26C78EE400A8861A /* LoginViewController.swift in Sources */,
 				54EF579726D9E27E00F92080 /* UserDataStore.swift in Sources */,
+				5474731C2709C58A00FB53D1 /* ChatRoomUseCase.swift in Sources */,
 				543D952B26D5DE33009E2946 /* UserListPresenter.swift in Sources */,
 				543D955426D62031009E2946 /* ChatRoomCurrentUserCell.swift in Sources */,
+				54FAA38926E6C71B009493AD /* AddChatRoomAlert.swift in Sources */,
 				54EF579B26D9E29600F92080 /* ChatRoomDataStore.swift in Sources */,
 				54EF579D26D9E2A300F92080 /* MessageGateway.swift in Sources */,
 				543D953426D5E886009E2946 /* ChatRoom.swift in Sources */,

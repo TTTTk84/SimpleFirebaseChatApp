@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol UserListAlertProtocol {
+    func didUpdateAlert(alert: UIAlertController)
+    func transitonToChatList()
+}
+
+
 class UserListViewController: UIViewController {
 
     let userTableView = UITableView()
@@ -93,5 +99,17 @@ extension UserListViewController: UITableViewDelegate,UITableViewDataSource {
 extension UserListViewController: ChatViewProtocol {
     func reloadTableView() {
         self.userTableView.reloadData()
+    }
+}
+
+extension UserListViewController: UserListAlertProtocol {
+
+
+    func didUpdateAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: {})
+    }
+
+    func transitonToChatList() {
+        self.presenter.transitionToChatList()
     }
 }

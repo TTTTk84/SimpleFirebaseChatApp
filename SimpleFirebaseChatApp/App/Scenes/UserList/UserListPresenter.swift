@@ -13,8 +13,8 @@ protocol UserListPresenterProtocol {
     func didSelectRow(at indexPath: IndexPath)
     func checkUserListRow(forRow row: Int) -> User?
     func addSelectedUsers(user: User)
-
     func tappedAddUserButton()
+    func transitionToChatList()
 }
 
 
@@ -26,6 +26,7 @@ class UserListPresenter {
     private var userUseCase: UserUsecaseProtocol!
     private var chatRoomUseCase: ChatRoomUsecaseProtocol!
     private var selectedUsers: [User]!
+    private var chatListView: ChatViewProtocol!
     private var view: ChatViewProtocol!
 
     init(view: ChatViewProtocol,
@@ -37,13 +38,14 @@ class UserListPresenter {
         self.userUseCase = userUseCase
         self.chatRoomUseCase = chatRoomUseCase
         self.userUseCase.userListOutput = self
-//        self.chatRoomUseCase.chatListOutput = view
         self.userUseCase.fetchUserAll()
     }
 
 }
 
 extension UserListPresenter: UserListPresenterProtocol {
+
+
 
 
     var numberOfUsers: Int {
@@ -64,11 +66,21 @@ extension UserListPresenter: UserListPresenterProtocol {
     }
 
     func tappedAddUserButton() {
+
         let alert = AddChatRoomAlert(selectedUsers: self.selectedUsers,
-                                     useCase: self.chatRoomUseCase)
+                                     useCase: self.chatRoomUseCase,
+                                     view: view as! UserListAlertProtocol)
         alert.createChatRoomAlert()
+//        let tempUser = User(dic: ["username": "new user"])
+//        self.chatRoomUseCase.createChatRoom(chatRoomName: "hogehoge",
+//                                            members: [tempUser])
+    }
+
+    func transitionToChatList() {
         self.router.transitionToChatList()
     }
+
+
 
 }
 
@@ -79,3 +91,5 @@ extension UserListPresenter: ChatUseCaseUserListOutput {
         self.view.reloadTableView()
     }
 }
+
+

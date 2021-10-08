@@ -211,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				54EF57A026DA02FD00F92080 /* Domain */,
-				543D951E26D5DC42009E2946 /* UI */,
 				543D951326D5B876009E2946 /* SignUp */,
 				543D951226D5B863009E2946 /* Login */,
 				543D951126D5B85C009E2946 /* ChatList */,
@@ -244,102 +243,16 @@
 		543D950F26D5B842009E2946 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
-				543D951D26D5DBDD009E2946 /* Domain */,
-				543D951B26D5DBCF009E2946 /* Presentation */,
+				543D954C26D61AF4009E2946 /* Xib */,
+				54EF579226D9E1FF00F92080 /* UI */,
+				54EBBA2026C78F4600A8861A /* ChatRoomViewController.swift */,
+				543D952C26D5DE44009E2946 /* ChatRoomPresenter.swift */,
+				54EF57AB26DA04BB00F92080 /* ChatRoomRouter.swift */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
 		};
 		543D951026D5B854009E2946 /* UserList */ = {
-			isa = PBXGroup;
-			children = (
-				543D951C26D5DBD6009E2946 /* Domain */,
-				543D951A26D5DBC4009E2946 /* Presentation */,
-			);
-			path = UserList;
-			sourceTree = "<group>";
-		};
-		543D951126D5B85C009E2946 /* ChatList */ = {
-			isa = PBXGroup;
-			children = (
-				543D951926D5DBBF009E2946 /* Domain */,
-				543D951826D5DBB8009E2946 /* Presentation */,
-			);
-			path = ChatList;
-			sourceTree = "<group>";
-		};
-		543D951226D5B863009E2946 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				543D951626D5DBAA009E2946 /* Domain */,
-				543D951726D5DBAF009E2946 /* Presentation */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		543D951326D5B876009E2946 /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				543D951526D5B89E009E2946 /* Domain */,
-				543D951426D5B881009E2946 /* Presentation */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
-		543D951426D5B881009E2946 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				54EBBA1826C78ED400A8861A /* SignUpViewController.swift */,
-				543D952426D5DDDC009E2946 /* SignUpPresenter.swift */,
-				54EF57A326DA049200F92080 /* SignUpRouter.swift */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		543D951526D5B89E009E2946 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		543D951626D5DBAA009E2946 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		543D951726D5DBAF009E2946 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				54EBBA1A26C78EE400A8861A /* LoginViewController.swift */,
-				543D952626D5DDEB009E2946 /* LoginPresenter.swift */,
-				54EF57A526DA049B00F92080 /* LoginRouter.swift */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		543D951826D5DBB8009E2946 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				543D954226D60865009E2946 /* Xib */,
-				54EF579026D9E1B800F92080 /* UI */,
-				54EBBA1E26C78F2A00A8861A /* ChatListViewController.swift */,
-				543D952826D5DE23009E2946 /* ChatListPresenter.swift */,
-				54EF57A726DA04A600F92080 /* ChatListRouter.swift */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		543D951926D5DBBF009E2946 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		543D951A26D5DBC4009E2946 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				543D954726D614AC009E2946 /* Xib */,
@@ -348,40 +261,39 @@
 				543D952A26D5DE33009E2946 /* UserListPresenter.swift */,
 				54EF57A926DA04B100F92080 /* UserListRouter.swift */,
 			);
-			path = Presentation;
+			path = UserList;
 			sourceTree = "<group>";
 		};
-		543D951B26D5DBCF009E2946 /* Presentation */ = {
+		543D951126D5B85C009E2946 /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
-				543D954C26D61AF4009E2946 /* Xib */,
-				54EF579226D9E1FF00F92080 /* UI */,
-				54EBBA2026C78F4600A8861A /* ChatRoomViewController.swift */,
-				543D952C26D5DE44009E2946 /* ChatRoomPresenter.swift */,
-				54EF57AB26DA04BB00F92080 /* ChatRoomRouter.swift */,
+				543D954226D60865009E2946 /* Xib */,
+				54EF579026D9E1B800F92080 /* UI */,
+				54EBBA1E26C78F2A00A8861A /* ChatListViewController.swift */,
+				543D952826D5DE23009E2946 /* ChatListPresenter.swift */,
+				54EF57A726DA04A600F92080 /* ChatListRouter.swift */,
 			);
-			path = Presentation;
+			path = ChatList;
 			sourceTree = "<group>";
 		};
-		543D951C26D5DBD6009E2946 /* Domain */ = {
+		543D951226D5B863009E2946 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				54EBBA1A26C78EE400A8861A /* LoginViewController.swift */,
+				543D952626D5DDEB009E2946 /* LoginPresenter.swift */,
+				54EF57A526DA049B00F92080 /* LoginRouter.swift */,
 			);
-			path = Domain;
+			path = Login;
 			sourceTree = "<group>";
 		};
-		543D951D26D5DBDD009E2946 /* Domain */ = {
+		543D951326D5B876009E2946 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				54EBBA1826C78ED400A8861A /* SignUpViewController.swift */,
+				543D952426D5DDDC009E2946 /* SignUpPresenter.swift */,
+				54EF57A326DA049200F92080 /* SignUpRouter.swift */,
 			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		543D951E26D5DC42009E2946 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UI;
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		543D952E26D5E828009E2946 /* User */ = {
@@ -417,28 +329,12 @@
 		543D953826D5EAEE009E2946 /* UserDetail */ = {
 			isa = PBXGroup;
 			children = (
-				543D953926D5EB15009E2946 /* Domain */,
-				543D953A26D5EB1B009E2946 /* Presentation */,
-			);
-			path = UserDetail;
-			sourceTree = "<group>";
-		};
-		543D953926D5EB15009E2946 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		543D953A26D5EB1B009E2946 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
 				54EF579326D9E21E00F92080 /* UI */,
 				543D953B26D5EB34009E2946 /* UserDetailViewController.swift */,
 				543D953D26D5EB3F009E2946 /* UserDetailPresenter.swift */,
 				54EF57AD26DA04D000F92080 /* UserDetailRouter.swift */,
 			);
-			path = Presentation;
+			path = UserDetail;
 			sourceTree = "<group>";
 		};
 		543D953F26D5F3AD009E2946 /* Extensions */ = {

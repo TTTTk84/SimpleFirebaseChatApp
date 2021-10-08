@@ -17,8 +17,6 @@ protocol ChatListRouterProtocol {
 
 class ChatListRouter: ChatListRouterProtocol {
 
-
-
     private(set) var view: ChatViewProtocol!
     private let userUseCase: UserUsecaseProtocol = Application.shared.userUseCase
     private let chatRoomUseCase: ChatRoomUsecaseProtocol = Application.shared.chatRoomUseCase

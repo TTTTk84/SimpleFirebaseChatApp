@@ -7,17 +7,24 @@
 
 import UIKit
 
-class AddChatRoomAlert {
+protocol AddChatRoomAlertProtocol {
+    func createChatRoomAlert()
+}
+
+class AddChatRoomAlert: AddChatRoomAlertProtocol {
 
     var useCase: ChatRoomUsecaseProtocol!
     var selectedUsers: [User]!
+    var view: UserListAlertProtocol!
 
-    init(selectedUsers: [User], useCase: ChatRoomUsecaseProtocol) {
+    init(selectedUsers: [User],
+         useCase: ChatRoomUsecaseProtocol,
+         view: UserListAlertProtocol) {
         self.useCase = useCase
         self.selectedUsers = selectedUsers
-
-        //self.createChatRoomAlert()
+        self.view = view
     }
+
 
     public func createChatRoomAlert() {
         var alertTextField: UITextField?
@@ -27,7 +34,7 @@ class AddChatRoomAlert {
             message: "",
             preferredStyle: UIAlertController.Style.alert)
         alert.addTextField(
-            configurationHandler: {(textField: UITextField!) in
+            configurationHandler: {(textField: UITextField!) -> Void in
                 alertTextField = textField
             })
 
@@ -36,11 +43,14 @@ class AddChatRoomAlert {
         let okAction = UIAlertAction(title: "追加", style: UIAlertAction.Style.default) { [self] _ in
             if let text = alertTextField?.text {
                 self.useCase.createChatRoom(chatRoomName: text, members: self.selectedUsers)
+                self.view.transitonToChatList()
             }
         }
 
-        alert.addAction(cancelAction)
-        alert.addAction(okAction)
 
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+
+        view.didUpdateAlert(alert: alert)
     }
 }

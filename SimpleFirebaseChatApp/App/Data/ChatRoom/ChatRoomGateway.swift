@@ -9,8 +9,8 @@ import Foundation
 
 
 protocol ChatRoomGatewayProtocol {
-    func fetchAll(completion: ([ChatRoom]) -> Void)
-    func createChatRoom(chatRoom: ChatRoom, completion: ([ChatRoom]) -> Void)
+    func fetchAll(completion: @escaping ([ChatRoom]) -> Void)
+    func createChatRoom(chatRoom: ChatRoom, completion: @escaping ([ChatRoom]) -> Void)
 }
 
 class ChatRoomGateway {
@@ -25,7 +25,7 @@ class ChatRoomGateway {
 
 extension ChatRoomGateway: ChatRoomGatewayProtocol {
 
-    func fetchAll(completion: ([ChatRoom]) -> Void) {
+    func fetchAll(completion: @escaping ([ChatRoom]) -> Void) {
 
         self.dataStore.fetchAll() { [weak self] chatRoomList in
             guard self != nil else { return }
@@ -33,7 +33,7 @@ extension ChatRoomGateway: ChatRoomGatewayProtocol {
         }
     }
 
-    func createChatRoom(chatRoom: ChatRoom, completion: ([ChatRoom]) -> Void) {
+    func createChatRoom(chatRoom: ChatRoom, completion: @escaping ([ChatRoom]) -> Void) {
 
         self.dataStore.createChatRoom(chatRoom: chatRoom) {
             [weak self] chatRoomList in

@@ -19,8 +19,26 @@ class SignUpViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = widthValue * 0.5 / 2
-        button.addTarget(self, action: #selector(moveToChatList), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedProfileImageButton), for: .touchUpInside)
         return button
+    }()
+
+    lazy var emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "メールアドレス"
+        return textField
+    }()
+
+    lazy var passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "パスワード"
+        return textField
+    }()
+
+    lazy var userNameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "ユーザーネーム"
+        return textField
     }()
     
     lazy var stackViews: UIStackView = {
@@ -36,15 +54,14 @@ class SignUpViewController: UIViewController {
     lazy var formStackViews: [UIStackView] = {
         var stackViews: [UIStackView] = []
         let labelNames: [String] = ["email", "password", "user name"]
-        let placeholderNames: [String] = ["メールアドレス","パスワード","ユーザの名前"]
+        let textFields: [UITextField] = [emailTextField, passwordTextField, userNameTextField]
         
         for i in 0 ..< 3 {
             var stackView: UIStackView = UIStackView()
             let label = UILabel()
-            let form = UITextField()
+            let form = textFields[i]
             stackView.translatesAutoresizingMaskIntoConstraints = false
             label.text = labelNames[i]
-            form.placeholder = placeholderNames[i]
             stackView.axis = .vertical
             stackView.alignment = .fill
             stackView.distribution = .fillEqually
@@ -119,9 +136,31 @@ class SignUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
+
+    @objc func tappedProfileImageButton() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
     
     @objc func moveToChatList() {
-        self.presenter.tappedSignUpButton()
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let userName = userNameTextField.text else { return }
+
+
+        let image = profileImageButton.imageView?.image
+        guard let uploadImage = image?.jpegData(compressionQuality: 0.3) else { return }
+
+        let doc = [
+            "email": email,
+            "password": password,
+            "username": userName,
+        ]
+        self.presenter.tappedSignUpButton(doc: doc,
+                                          imageData: uploadImage)
     }
     
     @objc func moveToLogin() {
@@ -133,6 +172,24 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: ChatViewProtocol {
     func reloadTableView() {
     }
+}
 
+extension SignUpViewController: UIImagePickerControllerDelegate,
+                                UINavigationControllerDelegate {
 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editImage = info[.editedImage] as? UIImage {
+            profileImageButton.setImage(editImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            profileImageButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+
+        profileImageButton.setTitle("", for: .normal)
+        profileImageButton.imageView?.contentMode = .scaleAspectFill
+        profileImageButton.contentHorizontalAlignment = .fill
+        profileImageButton.contentVerticalAlignment = .fill
+        profileImageButton.clipsToBounds = true
+
+        dismiss(animated: true, completion: nil)
+    }
 }

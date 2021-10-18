@@ -6,38 +6,63 @@
 //
 
 import Foundation
+import Firebase
 
 protocol ChatRoomDataStoreProtocol {
-    func fetchAll(completion: ([ChatRoom]) -> Void)
-    func createChatRoom(chatRoom: ChatRoom, completion: ([ChatRoom]) -> Void)
+    func fetchAll(completion: @escaping ([ChatRoom]) -> Void)
+    func createChatRoom(chatRoom: ChatRoom, completion: @escaping ([ChatRoom]) -> Void)
 }
 
 
 class ChatRoomDataStore {
 
-    var tempChatRoomArray: [ChatRoom] = [
-        ChatRoom(dic: ["latestMessageId": "message1",
-                       "chatRoomName": "chatroom 1"]),
-        ChatRoom(dic: ["latestMessageId": "message2",
-                       "chatRoomName": "chatroom 2"]),
-        ChatRoom(dic: ["latestMessageId": "message3",
-                       "chatRoomName": "chatroom 3"]),
-    ]
+    //    var chatRooms: [ChatRoom] = [
+    //        ChatRoom(dic: ["latestMessageId": "message1",
+    //                       "chatRoomName": "chatroom 1"])
+    //    ]
 
-    init(){
-    }
+    init(){}
 
 }
 
 extension ChatRoomDataStore: ChatRoomDataStoreProtocol {
 
 
-    func fetchAll(completion: ([ChatRoom]) -> Void) {
-        completion(self.tempChatRoomArray)
+    func fetchAll(completion: @escaping ([ChatRoom]) -> Void) {
+        Firestore.firestore().collection("chatRooms").getDocuments {
+            (snapshots, err) in
+            var chatRoomArray: [ChatRoom] = []
+            if let err = err {
+                print("chatRoomの情報の取得に失敗しました \(err)")
+                return
+            }
+            snapshots?.documents.forEach { (snapshot) in
+                let dic = snapshot.data()
+                let chatRoom = ChatRoom(dic: dic)
+                for user in chatRoom.memebers {
+                    guard let uid = Auth.auth().currentUser?.uid
+                    else { return }
+                    if uid == user.documentId {
+                        chatRoomArray.append(chatRoom)
+                        break
+                    }
+                }
+            }
+            completion(chatRoomArray)
+        }
     }
 
-    func createChatRoom(chatRoom: ChatRoom, completion: ([ChatRoom]) -> Void) {
-        self.tempChatRoomArray.append(chatRoom)
-        completion(self.tempChatRoomArray)
+    func createChatRoom(chatRoom: ChatRoom, completion: @escaping ([ChatRoom]) -> Void) {
+
+        var u = User(dic: ["hoge": "hoge"])
+//        Firestore.firestore().collection("chatRooms").addDocument(data: docData) { (err) in
+//            if let err = err {
+//                print("ChatRoom情報の保存に失敗しました。\(err)")
+//                return
+//            }
+//
+//            print("ChatRoom情報の保存に成功しました。")
+//
+//        }
     }
 }

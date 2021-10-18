@@ -8,7 +8,7 @@
 import Foundation
 
 protocol UserUsecaseProtocol {
-    func createUser()
+    func createUser(doc: [String: Any], imageData: Data, completion: @escaping (Bool) -> Void)
     func getLoginUser(completion: @escaping (User) -> Void)
     func checkLoginUser(email: String,
                         passWord: String,
@@ -33,7 +33,14 @@ class UserUseCase {
 }
 
 extension UserUseCase: UserUsecaseProtocol {
-    func createUser() {
+    func createUser(doc: [String: Any],
+                    imageData: Data,
+                    completion: @escaping (Bool) -> Void) {
+        self.userGateway.createUser(doc: doc,
+                                    imageData: imageData) {
+            bool in
+            completion(bool)
+        }
     }
 
     func fetchUserAll() {

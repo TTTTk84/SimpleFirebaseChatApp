@@ -13,6 +13,9 @@ protocol UserGatewayProtocol {
     func checkLoginUser(email: String,
                         passWord: String,
                         completion: @escaping (Bool) -> Void)
+    func createUser(doc: [String: Any],
+                    imageData: Data,
+                    completion: @escaping (Bool) -> Void)
 }
 
 class UserGateway {
@@ -27,6 +30,17 @@ class UserGateway {
 }
 
 extension UserGateway: UserGatewayProtocol {
+
+    func createUser(doc: [String: Any],
+                    imageData: Data,
+                    completion: @escaping (Bool) -> Void) {
+        self.dataStore.createUser(doc: doc,
+                                  imageData: imageData){
+            bool in
+            completion(bool)
+        }
+    }
+
     func checkLoginUser(email: String,
                         passWord: String,
                         completion: @escaping (Bool) -> Void) {

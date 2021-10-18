@@ -9,21 +9,18 @@ import Foundation
 import Firebase
 
 protocol UserDataStoreProtocol {
+    func createUser(doc: [String: Any],
+                    imageData: Data,
+                    completion: @escaping (Bool) -> Void)
     func getLoginUser(completion: @escaping (User) -> Void)
     func fetchAll(completion: @escaping ([User]) -> Void)
     func checkLoginUser(email: String,
                         passWord: String,
                         completion: @escaping (Bool) -> Void)
+
 }
 
 class UserDataStore {
-
-    var tempUserArray: [User] = [
-        User(dic: ["username": "user 1"]),
-        User(dic: ["username": "user 2"]),
-        User(dic: ["username": "user 3"]),
-        User(dic: ["username": "user 4"]),
-    ]
 
     var users: [User] = []
 
@@ -32,7 +29,80 @@ class UserDataStore {
 
 }
 
+extension UserDataStore {
+
+    func createUserToFirebase(email: String,
+                              password: String,
+                              username: String,
+                              profileImageUrl: String,
+                              completion: @escaping (Bool) -> Void) {
+        let createUserToFirebase = Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
+            if let err = err {
+                print("認証情報の保存に失敗しました。\(err)")
+                completion(false)
+                return
+            }
+
+            guard let uid = res?.user.uid else { return }
+            let docData = [
+                "email": email,
+                "username": username,
+                "createdAt": Timestamp(),
+                "profileImageUrl": profileImageUrl
+            ] as [String : Any]
+
+            Firestore.firestore().collection("users").document(uid).setData(docData) { (err) in
+                if let err = err {
+                    print("Firestoreへの保存に失敗しました。\(err)")
+                    completion(false)
+                    return
+                }
+
+                print("Firestoreへの情報の保存が成功しました。")
+                completion(true)
+            }
+        }
+    }
+
+}
+
 extension UserDataStore: UserDataStoreProtocol {
+
+    func createUser(doc: [String: Any],
+                    imageData: Data,
+                    completion: @escaping (Bool) -> Void) {
+        let email = doc["email"] as! String
+        let password = doc["password"] as! String
+        let username = doc["username"] as! String
+        let fileName = NSUUID().uuidString
+        let storageRef = Storage.storage().reference().child("profile_image").child(fileName)
+
+
+        storageRef.putData(imageData, metadata: nil) { (matadata, err) in
+            if let err = err {
+                print("Firestorageへの情報の保存に失敗しました。\(err)")
+                completion(false)
+            }
+
+            storageRef.downloadURL { (url, err) in
+                if let err = err {
+                    print("Firestorageからのダウンロードに失敗しました。\(err)")
+                    completion(false)
+                }
+
+                guard let urlString = url?.absoluteString else { return }
+                self.createUserToFirebase(email: email,
+                                          password: password,
+                                          username: username,
+                                          profileImageUrl: urlString) {
+                    err in
+                    completion(true)
+                }
+            }
+
+        }
+    }
+
     func checkLoginUser(email: String,
                         passWord: String,
                         completion: @escaping (Bool) -> Void) {

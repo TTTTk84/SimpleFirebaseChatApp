@@ -289,6 +289,7 @@
 		543D951326D5B876009E2946 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				54C332E6271BF656006FE6D6 /* UI */,
 				54EBBA1826C78ED400A8861A /* SignUpViewController.swift */,
 				543D952426D5DDDC009E2946 /* SignUpPresenter.swift */,
 				54EF57A326DA049200F92080 /* SignUpRouter.swift */,
@@ -369,6 +370,13 @@
 				543D955126D61CB3009E2946 /* ChatRoomInputView.xib */,
 			);
 			path = Xib;
+			sourceTree = "<group>";
+		};
+		54C332E6271BF656006FE6D6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		54EBB9D826C7781E00A8861A = {

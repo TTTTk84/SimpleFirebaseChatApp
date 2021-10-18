@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SignUpPresenterProtocol {
-    func tappedSignUpButton()
+    func tappedSignUpButton(doc: [String: Any],imageData: Data)
     func tappedLoginButton()
 }
 
@@ -26,8 +26,15 @@ class SignUpPresenter {
 }
 
 extension SignUpPresenter: SignUpPresenterProtocol {
-    func tappedSignUpButton() {
-        self.router.transitionToSignUpSuccess()
+    func tappedSignUpButton(doc: [String: Any],imageData: Data) {
+        
+        userUseCase.createUser(doc: doc,
+                               imageData: imageData){ bool in
+            if !bool {
+                return
+            }
+            self.router.transitionToSignUpSuccess()
+        }
     }
 
     func tappedLoginButton() {

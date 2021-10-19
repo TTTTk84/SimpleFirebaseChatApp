@@ -14,7 +14,7 @@ class User {
     let createdAt: Timestamp
     let profileImageUrl: String
     
-    var documentId: String?
+    var uid: String?
 
 
     init(dic: [String: Any]) {

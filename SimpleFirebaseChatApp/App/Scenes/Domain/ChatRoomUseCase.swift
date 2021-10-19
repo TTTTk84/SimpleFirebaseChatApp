@@ -10,7 +10,7 @@ import Foundation
 
 protocol ChatRoomUsecaseProtocol {
     func fetchChatRoomAll()
-    func createChatRoom(chatRoomName: String, members: [User])
+    func createChatRoom(chatRoomName: String, members: [String])
 
     var chatRoomGateway: ChatRoomGatewayProtocol! { get set }
     var chatListOutput: ChatUseCaseChatListOutput! { get set }
@@ -39,10 +39,10 @@ extension ChatRoomUsecase: ChatRoomUsecaseProtocol {
         }
     }
 
-    func createChatRoom(chatRoomName: String, members: [User]) {
+    func createChatRoom(chatRoomName: String, members: [String]) {
         let dic: [String: Any] = [
             "chatRoomName": chatRoomName,
-            "latestMessageId": "newMessage",
+            "latestMessageId": "",
             "members": members,
         ]
 

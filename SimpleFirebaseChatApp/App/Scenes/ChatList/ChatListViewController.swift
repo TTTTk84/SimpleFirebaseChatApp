@@ -30,6 +30,8 @@ class ChatListViewController: UIViewController {
         self.presenter.currentUser() { [weak self] user in
             self?.navigationItem.title = user.username
         }
+
+        self.chatTableView.reloadData()
     }
 
     private func setupNavigation() {

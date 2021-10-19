@@ -148,7 +148,7 @@ extension UserDataStore: UserDataStoreProtocol {
             snapshots?.documents.forEach({ (snapshot) in
                 let dic = snapshot.data()
                 let user = User(dic: dic)
-                user.documentId = snapshot.documentID
+                user.uid = snapshot.documentID
 
                 guard let documentId = Auth.auth().currentUser?.uid else { return }
                 if documentId == snapshot.documentID {
@@ -156,8 +156,8 @@ extension UserDataStore: UserDataStoreProtocol {
                 }
 
                 self.users.append(user)
-                completion(self.users)
             })
+            completion(self.users)
         }
     }
 

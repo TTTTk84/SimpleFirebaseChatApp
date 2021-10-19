@@ -14,10 +14,10 @@ protocol AddChatRoomAlertProtocol {
 class AddChatRoomAlert: AddChatRoomAlertProtocol {
 
     var useCase: ChatRoomUsecaseProtocol!
-    var selectedUsers: [User]!
+    var selectedUsers: [String]!
     var view: UserListAlertProtocol!
 
-    init(selectedUsers: [User],
+    init(selectedUsers: [String],
          useCase: ChatRoomUsecaseProtocol,
          view: UserListAlertProtocol) {
         self.useCase = useCase
@@ -43,9 +43,12 @@ class AddChatRoomAlert: AddChatRoomAlertProtocol {
         let okAction = UIAlertAction(title: "追加", style: UIAlertAction.Style.default) { [self] _ in
             if let text = alertTextField?.text {
                 self.useCase.createChatRoom(chatRoomName: text, members: self.selectedUsers)
+                self.useCase.fetchChatRoomAll()
                 self.view.transitonToChatList()
             }
         }
+
+        
 
 
         alert.addAction(okAction)

@@ -7,6 +7,7 @@
 
 
 import Foundation
+import Firebase
 
 protocol UserListPresenterProtocol {
     var numberOfUsers: Int { get }
@@ -25,7 +26,7 @@ class UserListPresenter {
     private let router: UserListRouterProtocol!
     private var userUseCase: UserUsecaseProtocol!
     private var chatRoomUseCase: ChatRoomUsecaseProtocol!
-    private var selectedUsers: [User]!
+    private var selectedUsers: [String]!
     private var chatListView: ChatViewProtocol!
     private var view: ChatViewProtocol!
 
@@ -62,18 +63,18 @@ extension UserListPresenter: UserListPresenterProtocol {
 
     func addSelectedUsers(user: User) {
         self.selectedUsers = []
-        self.selectedUsers.append(user)
+        self.selectedUsers.append(user.uid!)
     }
 
     func tappedAddUserButton() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        self.selectedUsers.append(uid)
+        print("selectedUsers \(selectedUsers)")
 
         let alert = AddChatRoomAlert(selectedUsers: self.selectedUsers,
                                      useCase: self.chatRoomUseCase,
                                      view: view as! UserListAlertProtocol)
         alert.createChatRoomAlert()
-//        let tempUser = User(dic: ["username": "new user"])
-//        self.chatRoomUseCase.createChatRoom(chatRoomName: "hogehoge",
-//                                            members: [tempUser])
     }
 
     func transitionToChatList() {

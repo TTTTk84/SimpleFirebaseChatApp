@@ -39,30 +39,35 @@ extension ChatRoomDataStore: ChatRoomDataStoreProtocol {
             snapshots?.documents.forEach { (snapshot) in
                 let dic = snapshot.data()
                 let chatRoom = ChatRoom(dic: dic)
-                for user in chatRoom.memebers {
+                for user in chatRoom.members {
                     guard let uid = Auth.auth().currentUser?.uid
                     else { return }
-                    if uid == user.documentId {
+                    if uid == user {
                         chatRoomArray.append(chatRoom)
                         break
                     }
                 }
+                completion(chatRoomArray)
             }
-            completion(chatRoomArray)
         }
     }
 
     func createChatRoom(chatRoom: ChatRoom, completion: @escaping ([ChatRoom]) -> Void) {
 
-        var u = User(dic: ["hoge": "hoge"])
-//        Firestore.firestore().collection("chatRooms").addDocument(data: docData) { (err) in
-//            if let err = err {
-//                print("ChatRoom情報の保存に失敗しました。\(err)")
-//                return
-//            }
-//
-//            print("ChatRoom情報の保存に成功しました。")
-//
-//        }
+        let dic: [String: Any] = [
+            "latestMessageId": "",
+            "members": chatRoom.members,
+            "chatRoomName": chatRoom.chatRoomName,
+            "createdAt": Timestamp()
+        ]
+
+        Firestore.firestore().collection("chatRooms").addDocument(data: dic) { (err) in
+            if let err = err {
+                print("ChatRoom情報の保存に失敗しました。\(err)")
+                return
+            }
+
+            print("ChatRoom情報の保存に成功しました。")
+        }
     }
 }

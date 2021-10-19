@@ -19,6 +19,7 @@ class ChatListCell: UITableViewCell {
     func setupValue(partnerLabel: String, latestMessageLabel: String) {
         self.partnerLabel.text = partnerLabel
         self.latestMessageLabel.text = latestMessageLabel
+        self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
     }
 
 }

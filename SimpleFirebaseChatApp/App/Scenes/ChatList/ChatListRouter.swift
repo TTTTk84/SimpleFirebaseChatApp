@@ -11,7 +11,7 @@ import UIKit
 protocol ChatListRouterProtocol {
     func transitionToLogout()
     func transitionToNewChat()
-    func transitionToChatRoom()
+    func transitionToChatRoom(chatroom: ChatRoom)
 }
 
 
@@ -20,6 +20,7 @@ class ChatListRouter: ChatListRouterProtocol {
     private(set) var view: ChatViewProtocol!
     private let userUseCase: UserUsecaseProtocol = Application.shared.userUseCase
     private let chatRoomUseCase: ChatRoomUsecaseProtocol = Application.shared.chatRoomUseCase
+    private let messageUseCase: MessageUsecaseProtocol = Application.shared.messageUseCase
 
     init(view: ChatViewProtocol) {
         self.view = view
@@ -43,8 +44,12 @@ class ChatListRouter: ChatListRouterProtocol {
         self.view.present(navigationController, animated: true, completion: nil)
     }
 
-    func transitionToChatRoom() {
+    func transitionToChatRoom(chatroom: ChatRoom) {
         let chatRoomViewController = ChatRoomViewController()
+        let presenter = ChatRoomPresenter(view: chatRoomViewController,
+                                          chatroom: chatroom,
+                                          messageUseCase: self.messageUseCase, userUseCase: self.userUseCase)
+        chatRoomViewController.inject(presenter: presenter)
         self.view.pushViewController(chatRoomViewController, animated: true)
     }
 

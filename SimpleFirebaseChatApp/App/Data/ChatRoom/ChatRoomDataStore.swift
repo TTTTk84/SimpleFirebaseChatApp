@@ -39,6 +39,7 @@ extension ChatRoomDataStore: ChatRoomDataStoreProtocol {
             snapshots?.documents.forEach { (snapshot) in
                 let dic = snapshot.data()
                 let chatRoom = ChatRoom(dic: dic)
+                chatRoom.documentId = snapshot.documentID
                 for user in chatRoom.members {
                     guard let uid = Auth.auth().currentUser?.uid
                     else { return }

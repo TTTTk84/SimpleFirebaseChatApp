@@ -15,6 +15,8 @@ class ChatRoomPartnerUserCell: UITableViewCell {
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
 
+    
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -22,5 +24,10 @@ class ChatRoomPartnerUserCell: UITableViewCell {
         self.messageTextView.isEditable = false
         self.messageTextView.isSelectable = false
         self.messageTextView.isScrollEnabled = false
+        self.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
+    }
+
+    func setupValue(message: String, user: User) {
+        messageTextView.text = message
     }
 }

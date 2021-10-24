@@ -9,19 +9,25 @@ import UIKit
 
 class ChatRoomViewController: UIViewController {
 
-    private let chatRoomInputView: ChatRoomInputView = {
+    private lazy var chatRoomInputView: ChatRoomInputView = {
         let view = ChatRoomInputView()
+        view.view = self as! ChatInputViewDelegate
         view.backgroundColor = .white
-        //view.frame = CGRect(x: 0, y: 0, width: widthValue, height: 100)
         return view
     }()
 
     private var chatRoomTableView = UITableView()
 
-
     private let chatRoomInputViewHeight: CGFloat = 100
     private var navberHeight: CGFloat {
         ((self.navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height)
+    }
+
+    private var presenter: ChatRoomPresenterProtocol!
+    
+
+    func inject(presenter: ChatRoomPresenterProtocol) {
+        self.presenter = presenter
     }
 
     override func viewDidLoad() {
@@ -50,8 +56,6 @@ class ChatRoomViewController: UIViewController {
 
 
     private func setupChatTableView() {
-
-
         self.chatRoomTableView.delegate = self
         self.chatRoomTableView.dataSource = self
 
@@ -69,14 +73,9 @@ class ChatRoomViewController: UIViewController {
         self.chatRoomTableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: navberHeight).isActive = true
         self.chatRoomTableView.bottomAnchor.constraint(equalTo: self.chatRoomInputView.topAnchor, constant: 0).isActive = true
         self.chatRoomTableView.widthAnchor.constraint(equalToConstant: widthValue).isActive = true
-//        self.chatRoomTableView.heightAnchor.constraint(equalToConstant: heightValue).isActive = true
     }
 
-//    override var inputAccessoryView: UIView? {
-//        self.chatRoomInputView
-//    }
-//
-//    override var canBecomeFirstResponder: Bool { true }
+
 }
 
 
@@ -85,28 +84,47 @@ extension ChatRoomViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         chatRoomTableView.estimatedRowHeight = 60
         return UITableView.automaticDimension
-        //return 100
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.presenter.numberOfUsers
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell1 = chatRoomTableView.dequeueReusableCell(withIdentifier: ChatRoomCurrentUserCell.cellIdentifier) as! ChatRoomCurrentUserCell
-        cell1.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
+        let currentUserCell = chatRoomTableView.dequeueReusableCell(withIdentifier: ChatRoomCurrentUserCell.cellIdentifier) as! ChatRoomCurrentUserCell
 
-        let cell2 = chatRoomTableView.dequeueReusableCell(withIdentifier: ChatRoomPartnerUserCell.cellIdentifier) as! ChatRoomPartnerUserCell
-        cell2.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
+        let partnerUserCell = chatRoomTableView.dequeueReusableCell(withIdentifier: ChatRoomPartnerUserCell.cellIdentifier) as! ChatRoomPartnerUserCell
 
-        if indexPath.row < 5 {
-            cell1.messageTextView.text = "hoge\(indexPath.row)"
-            return cell1
+        guard let partnerUser = self.presenter.partnerUser,
+              let currentUser = self.presenter.currentUser,
+              let message = self.presenter.checkMessageRow(forRow: indexPath.row)
+        else {
+            return currentUserCell
+        }
+
+
+        if message.userId == currentUser.uid {
+            currentUserCell.setupValue(message: message.message)
+            return currentUserCell
         } else {
-            cell2.messageTextView.text = "fuga\(indexPath.row)ijoiwjefrajeoifraowefoaw3rjo;wei4ftoawefoself.messageTextView.layer.cornerRadius = 15            self.messageTextView.isEditable = false            self.messageTextView.isSelecta"
-            return cell2
+            partnerUserCell.setupValue(message: message.message,
+                                       user: partnerUser)
+            return partnerUserCell
         }
     }
 
 
+}
+
+extension ChatRoomViewController: ChatInputViewDelegate {
+    func tappedSendButton(text: String) {
+        self.chatRoomInputView.removeText()
+        self.presenter.tappedSendButton(text: text)
+    }
+}
+
+extension ChatRoomViewController: ChatViewProtocol {
+    func reloadTableView() {
+        self.chatRoomTableView.reloadData()
+    }
 }

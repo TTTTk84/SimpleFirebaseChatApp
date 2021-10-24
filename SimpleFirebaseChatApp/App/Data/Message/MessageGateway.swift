@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+protocol MessageGatewayProtocol {
+
+}
+
+class MessageGateway {
+
+}
+
+extension MessageGateway: MessageGatewayProtocol {
+    
+}

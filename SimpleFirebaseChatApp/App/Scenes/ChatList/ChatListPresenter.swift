@@ -62,7 +62,7 @@ extension ChatListPresenter: ChatListPresenterProtocol {
 
     func didSelectRow(at indexPath: IndexPath) {
         guard let chatRoom = checkChatRoomRow(forRow: indexPath.row) else { return }
-        self.router.transitionToChatRoom()
+        self.router.transitionToChatRoom(chatroom: chatRoom)
     }
 
     func tappedNewChatButton()  {

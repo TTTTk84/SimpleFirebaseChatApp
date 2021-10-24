@@ -16,7 +16,7 @@ class Application {
 
     private(set) var userUseCase: UserUsecaseProtocol!
     private(set) var chatRoomUseCase: ChatRoomUsecaseProtocol!
-//    private(set) var messageUseCase:
+    private(set) var messageUseCase: MessageUsecaseProtocol!
 
     func configure(with window: UIWindow) {
         buildLayer()
@@ -41,6 +41,7 @@ class Application {
 
         self.userUseCase = UserUseCase()
         self.chatRoomUseCase = ChatRoomUsecase()
+        self.messageUseCase = MessageUsecase()
 
         let userGateway = UserGateway(userUseCase: self.userUseCase)
         self.userUseCase.userGateway = userGateway
@@ -51,6 +52,11 @@ class Application {
         self.chatRoomUseCase.chatRoomGateway = chatRoomGateway
         let chatRoomDataStore = ChatRoomDataStore()
         chatRoomGateway.dataStore = chatRoomDataStore
+
+        let messageGateway = MessageGateway()
+        let messageDataStore = MessageDataStore()
+
+
 
     }
 

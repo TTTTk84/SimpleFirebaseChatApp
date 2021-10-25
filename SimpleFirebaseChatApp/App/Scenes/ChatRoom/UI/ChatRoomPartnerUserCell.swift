@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class ChatRoomPartnerUserCell: UITableViewCell {
 
@@ -27,7 +28,12 @@ class ChatRoomPartnerUserCell: UITableViewCell {
         self.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
     }
 
-    func setupValue(message: String, user: User) {
-        messageTextView.text = message
+    func setupValue(message: String?, user: User?) {
+        if let message = message,
+           let urlString = user?.profileImageUrl,
+           let url = URL(string: urlString) {
+            messageTextView.text = message
+            Nuke.loadImage(with: url, into: userImageView)
+        }
     }
 }

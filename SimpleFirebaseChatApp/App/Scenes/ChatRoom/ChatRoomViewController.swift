@@ -11,7 +11,7 @@ class ChatRoomViewController: UIViewController {
 
     private lazy var chatRoomInputView: ChatRoomInputView = {
         let view = ChatRoomInputView()
-        view.view = self as! ChatInputViewDelegate
+        view.view = self
         view.backgroundColor = .white
         return view
     }()

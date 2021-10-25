@@ -34,11 +34,13 @@ class ChatRoomPresenter {
         self.view = view
         self.chatroom = chatroom
         self.messageUseCase = messageUseCase
+        self.messageUseCase.chatRoomOutput = self
 
         userUseCase.getLoginUser() { user in
             self.currentUser = user
         }
         self.partnerUser = chatroom.partnerUser
+        self.messageUseCase.fetchMessageAll(chatRoomDocumentId: chatroom.documentId!)
     }
 }
 
@@ -54,8 +56,27 @@ extension ChatRoomPresenter: ChatRoomPresenterProtocol {
     }
 
     func tappedSendButton(text: String) {
+        let name = currentUser.username
+        let uid = currentUser.uid
+        let message = Message(dic: ["name": name,
+                                    "userId": uid,
+                                    "message": text])
+        guard let chatroom = self.chatroom,
+              let documentId = chatroom.documentId else {
+                  return
+              }
+
+        self.messageUseCase
+            .createMessage(message: message,
+                           chatRoomDocumentId: documentId)
     }
 
 
 }
 
+extension ChatRoomPresenter: MessageUsecaseChatRoomOutput {
+    func useCaseDidUpdate(messages: [Message]) {
+        self.messages = messages
+        self.view.reloadTableView()
+    }
+}

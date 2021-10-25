@@ -128,9 +128,9 @@ class LoginViewController: UIViewController {
     }
     
     @objc func moveToChatList() {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-
+//        guard let email = emailTextField.text else { return }
+//        guard let password = passwordTextField.text else { return }
+//
 //        self.presenter.checkLoginUser(email: email,
 //                                      passWord: password) {
 //            [weak self] bool in

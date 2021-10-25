@@ -16,13 +16,30 @@ protocol ChatRoomDataStoreProtocol {
 
 class ChatRoomDataStore {
 
-    //    var chatRooms: [ChatRoom] = [
-    //        ChatRoom(dic: ["latestMessageId": "message1",
-    //                       "chatRoomName": "chatroom 1"])
-    //    ]
-
+    var chatRooms: [ChatRoom] = []
     init(){}
 
+}
+
+extension ChatRoomDataStore {
+    private func getUser(documentId: String,
+                         completion: @escaping (User) -> Void) {
+
+        Firestore.firestore().collection("users").document(documentId).getDocument { (snapshot, err) in
+            if let err = err {
+                print("ユーザー情報の取得に失敗しました。\(err)")
+                return
+            }
+
+            guard let snapshot = snapshot,
+                  let dic = snapshot.data() else { return }
+
+            let user = User(dic: dic)
+            completion(user)
+        }
+
+
+    }
 }
 
 extension ChatRoomDataStore: ChatRoomDataStoreProtocol {
@@ -31,7 +48,7 @@ extension ChatRoomDataStore: ChatRoomDataStoreProtocol {
     func fetchAll(completion: @escaping ([ChatRoom]) -> Void) {
         Firestore.firestore().collection("chatRooms").getDocuments {
             (snapshots, err) in
-            var chatRoomArray: [ChatRoom] = []
+
             if let err = err {
                 print("chatRoomの情報の取得に失敗しました \(err)")
                 return
@@ -44,12 +61,20 @@ extension ChatRoomDataStore: ChatRoomDataStoreProtocol {
                     guard let uid = Auth.auth().currentUser?.uid
                     else { return }
                     if uid == user {
-                        chatRoomArray.append(chatRoom)
+                        let partnerUser = chatRoom.members.filter { $0 != uid }
+                        print("partnerUser: \(partnerUser)")
+                        self.getUser(documentId: partnerUser[0]) {
+                            user in
+                            print("user: \(user.username)")
+                            chatRoom.partnerUser = user
+                            self.chatRooms.append(chatRoom)
+                        }
                         break
                     }
                 }
-                completion(chatRoomArray)
             }
+            print("chatroomarray: \(self.chatRooms)")
+            completion(self.chatRooms)
         }
     }
 

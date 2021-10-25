@@ -53,8 +53,10 @@ class Application {
         let chatRoomDataStore = ChatRoomDataStore()
         chatRoomGateway.dataStore = chatRoomDataStore
 
-        let messageGateway = MessageGateway()
+        let messageGateway = MessageGateway(messageUseCase: self.messageUseCase)
+        self.messageUseCase.messageGateway = messageGateway
         let messageDataStore = MessageDataStore()
+        messageGateway.dataStore = messageDataStore
 
 
 

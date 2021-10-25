@@ -82,6 +82,7 @@ extension ChatListPresenter: ChatUseCaseChatListOutput {
     }
 
     func useCaseDidUpdate(chatroom: [ChatRoom]) {
+        print("update")
         self.chatRoomList = chatroom
         self.view.reloadTableView()
     }

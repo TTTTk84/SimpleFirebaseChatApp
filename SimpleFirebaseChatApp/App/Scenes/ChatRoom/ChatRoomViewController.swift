@@ -119,7 +119,11 @@ extension ChatRoomViewController: UITableViewDelegate,UITableViewDataSource {
 extension ChatRoomViewController: ChatInputViewDelegate {
     func tappedSendButton(text: String) {
         self.chatRoomInputView.removeText()
-        self.presenter.tappedSendButton(text: text)
+        guard let uid = self.presenter.currentUser.uid else {
+            return
+        }
+        self.presenter.tappedSendButton(text: text,
+                                        uid: uid)
     }
 }
 

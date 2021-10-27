@@ -128,19 +128,19 @@ class LoginViewController: UIViewController {
     }
     
     @objc func moveToChatList() {
-//        guard let email = emailTextField.text else { return }
-//        guard let password = passwordTextField.text else { return }
-//
-//        self.presenter.checkLoginUser(email: email,
-//                                      passWord: password) {
-//            [weak self] bool in
-//            if bool {
-//                self?.presenter.tappedLoginButton()
-//            }
-//
-//            return
-//        }
-        self.presenter.tappedLoginButton()
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+
+        self.presenter.checkLoginUser(email: email,
+                                      passWord: password) {
+            [weak self] bool in
+            if bool {
+                self?.presenter.tappedLoginButton()
+            }
+
+            return
+        }
+//        self.presenter.tappedLoginButton()
     }
     
     @objc func moveToSignUp() {

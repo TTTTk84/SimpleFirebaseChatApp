@@ -128,9 +128,11 @@ extension UserDataStore: UserDataStoreProtocol {
                 return
             }
 
-            guard let snapshot = snapshot, let dic = snapshot.data() else { return }
+            guard let snapshot = snapshot,
+                  let dic = snapshot.data() else { return }
 
             let user = User(dic: dic)
+            user.uid = snapshot.documentID
             completion(user)
         }
     }

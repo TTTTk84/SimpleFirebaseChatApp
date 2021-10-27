@@ -45,12 +45,14 @@ class ChatListRouter: ChatListRouterProtocol {
     }
 
     func transitionToChatRoom(chatroom: ChatRoom) {
-        let chatRoomViewController = ChatRoomViewController()
-        let presenter = ChatRoomPresenter(view: chatRoomViewController,
-                                          chatroom: chatroom,
-                                          messageUseCase: self.messageUseCase, userUseCase: self.userUseCase)
-        chatRoomViewController.inject(presenter: presenter)
-        self.view.pushViewController(chatRoomViewController, animated: true)
+        self.userUseCase.getLoginUser() { user in
+            let chatRoomViewController = ChatRoomViewController()
+            let presenter = ChatRoomPresenter(view: chatRoomViewController,
+                                              chatroom: chatroom,
+                                              messageUseCase: self.messageUseCase, currentUser: user)
+            chatRoomViewController.inject(presenter: presenter)
+            self.view.pushViewController(chatRoomViewController, animated: true)
+        }
     }
 
 }

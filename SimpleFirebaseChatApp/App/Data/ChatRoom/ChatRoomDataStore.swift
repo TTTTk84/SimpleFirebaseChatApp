@@ -53,28 +53,23 @@ extension ChatRoomDataStore: ChatRoomDataStoreProtocol {
                 print("chatRoomの情報の取得に失敗しました \(err)")
                 return
             }
+
+            guard let uid = Auth.auth().currentUser?.uid
+            else { return }
+
             snapshots?.documents.forEach { (snapshot) in
                 let dic = snapshot.data()
                 let chatRoom = ChatRoom(dic: dic)
                 chatRoom.documentId = snapshot.documentID
-                for user in chatRoom.members {
-                    guard let uid = Auth.auth().currentUser?.uid
-                    else { return }
-                    if uid == user {
-                        let partnerUser = chatRoom.members.filter { $0 != uid }
-                        print("partnerUser: \(partnerUser)")
-                        self.getUser(documentId: partnerUser[0]) {
-                            user in
-                            print("user: \(user.username)")
-                            chatRoom.partnerUser = user
-                            self.chatRooms.append(chatRoom)
-                        }
-                        break
-                    }
+                let partnerUser = chatRoom.members.filter { $0 != uid }
+                self.getUser(documentId: partnerUser[0]) {
+                    user in
+                    chatRoom.partnerUser = user
+                    self.chatRooms.append(chatRoom)
+                    completion(self.chatRooms)
                 }
             }
-            print("chatroomarray: \(self.chatRooms)")
-            completion(self.chatRooms)
+
         }
     }
 

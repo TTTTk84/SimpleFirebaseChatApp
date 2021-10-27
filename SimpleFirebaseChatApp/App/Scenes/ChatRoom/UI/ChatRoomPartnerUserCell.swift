@@ -16,11 +16,10 @@ class ChatRoomPartnerUserCell: UITableViewCell {
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
 
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
         self.messageTextView.layer.cornerRadius = 15
         self.messageTextView.isEditable = false
         self.messageTextView.isSelectable = false

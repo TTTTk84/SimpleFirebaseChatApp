@@ -9,7 +9,7 @@ import Foundation
 
 protocol ChatRoomPresenterProtocol {
     var numberOfUsers: Int { get }
-    func tappedSendButton(text: String)
+    func tappedSendButton(text: String, uid: String)
     func checkMessageRow(forRow row: Int) -> Message?
 
     var currentUser: User! { get set }
@@ -22,6 +22,7 @@ class ChatRoomPresenter {
     var view: ChatViewProtocol!
     var chatroom: ChatRoom!
     var messageUseCase: MessageUsecaseProtocol!
+//    var userUseCase: UserUsecaseProtocol!
     private(set) var messages: [Message] = []
     var currentUser: User!
     var partnerUser: User!
@@ -30,16 +31,14 @@ class ChatRoomPresenter {
     init(view: ChatViewProtocol,
          chatroom: ChatRoom,
          messageUseCase: MessageUsecaseProtocol,
-         userUseCase: UserUsecaseProtocol) {
+         currentUser: User) {
         self.view = view
         self.chatroom = chatroom
         self.messageUseCase = messageUseCase
         self.messageUseCase.chatRoomOutput = self
-
-        userUseCase.getLoginUser() { user in
-            self.currentUser = user
-        }
         self.partnerUser = chatroom.partnerUser
+        self.currentUser = currentUser
+
         self.messageUseCase.fetchMessageAll(chatRoomDocumentId: chatroom.documentId!)
     }
 }
@@ -55,9 +54,8 @@ extension ChatRoomPresenter: ChatRoomPresenterProtocol {
         return self.messages[row]
     }
 
-    func tappedSendButton(text: String) {
+    func tappedSendButton(text: String, uid: String) {
         let name = currentUser.username
-        let uid = currentUser.uid
         let message = Message(dic: ["name": name,
                                     "userId": uid,
                                     "message": text])
